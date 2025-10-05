@@ -14,6 +14,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 ## Tech Stack
 
 - **Backend**: Django 4.2, Django REST Framework
+- **Frontend**: React, duh
 - **Authentication**: JWT (djangorestframework-simplejwt)
 - **AI/ML**: LangChain, Groq LLM, Sentence Transformers
 - **Vector Database**: ChromaDB
