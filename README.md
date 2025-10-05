@@ -6,7 +6,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 
 - **User Authentication**: JWT-based authentication with registration, login, and logout
 - **Policy Management**: Upload and manage policy PDF documents
-- **Content Moderation**: Check documents against policies using AI (Groq LLM)
+- **Content Moderation**: Check documents against policies using RAG Pipeline
 - **Moderation History**: Track all moderation results per user
 - **Vector Database**: Uses Chroma for efficient policy document retrieval
 - **RESTful API**: Built with Django REST Framework
@@ -14,6 +14,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 ## Tech Stack
 
 - **Backend**: Django 4.2, Django REST Framework
+- **Frontend**: React, duh
 - **Authentication**: JWT (djangorestframework-simplejwt)
 - **AI/ML**: LangChain, Groq LLM, Sentence Transformers
 - **Vector Database**: ChromaDB
@@ -23,7 +24,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 
 - Python 3.8+
 - pip
-- Groq API Key ([Get one here](https://console.groq.com))
+- Groq API Key
 
 ## Installation & Setup
 
@@ -268,7 +269,7 @@ content-moderation-system/
 │   ├── policies/
 │   └── moderation_files/
 ├── policy_store/            # Chroma vector database
-├── frontend/                # Future frontend app
+├── frontend/                # React based frontend
 ├── manage.py
 ├── requirements.txt
 ├── .env
