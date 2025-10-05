@@ -1044,3 +1044,66 @@ INFO 2025-10-05 17:49:11,399 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 
 INFO 2025-10-05 17:49:12,025 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
 INFO 2025-10-05 17:49:18,177 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
 INFO 2025-10-05 17:49:21,669 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:50:54,805 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:50:54,811 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1127
+INFO 2025-10-05 17:50:54,816 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:50:54,822 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1127
+INFO 2025-10-05 17:51:02,654 policy_store Clearing policy store
+INFO 2025-10-05 17:51:02,654 policy_store Policy store directory removed
+INFO 2025-10-05 17:51:02,655 policy_store Policy store cleared successfully
+INFO 2025-10-05 17:51:02,655 views User admin cleared 1 policies and reset policy store
+INFO 2025-10-05 17:51:02,656 basehttp "POST /api/moderation/clear-policies/ HTTP/1.1" 200 67
+INFO 2025-10-05 17:51:02,663 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:51:10,361 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:51:10,856 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:51:12,206 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:51:12,606 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:51:13,037 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:51:15,090 basehttp "OPTIONS /api/moderation/history/2/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:51:15,096 basehttp "GET /api/moderation/history/2/ HTTP/1.1" 200 829
+INFO 2025-10-05 17:51:18,687 basehttp "GET /media/moderation_files/I_hate_you_AjdZnkI.pdf HTTP/1.1" 200 31424
+INFO 2025-10-05 17:51:29,875 basehttp "OPTIONS /api/moderation/history/3/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:51:29,880 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 426
+INFO 2025-10-05 17:51:33,932 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 426
+INFO 2025-10-05 17:51:34,638 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 426
+INFO 2025-10-05 17:51:36,030 basehttp "OPTIONS /api/moderation/history/3/verdict/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:51:36,076 views User admin set final verdict to rejected for moderation 3
+INFO 2025-10-05 17:51:36,076 basehttp "POST /api/moderation/history/3/verdict/ HTTP/1.1" 200 75
+INFO 2025-10-05 17:51:36,126 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1153
+INFO 2025-10-05 17:52:09,790 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:52:13,252 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:52:13,484 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:52:13,962 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:52:14,353 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:52:16,320 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:54,526 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:56,453 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:56,691 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:56,890 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:57,155 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:53:57,379 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:54:46,758 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:54:50,056 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:58:11,572 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 17:58:16,748 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 17:58:16,782 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:58:16,791 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1153
+INFO 2025-10-05 17:58:16,804 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1153
+INFO 2025-10-05 17:58:16,829 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:58:31,710 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-05 17:58:35,066 basehttp "GET /api/moderation/history/2/ HTTP/1.1" 200 829
+INFO 2025-10-05 17:59:23,581 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:59:24,765 basehttp "OPTIONS /api/moderation/history/4/verdict/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:59:24,793 views User admin set final verdict to approved for moderation 4
+INFO 2025-10-05 17:59:24,794 basehttp "POST /api/moderation/history/4/verdict/ HTTP/1.1" 200 75
+INFO 2025-10-05 17:59:24,847 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1179
+INFO 2025-10-05 17:59:26,005 basehttp "GET /api/moderation/history/2/ HTTP/1.1" 200 829
+INFO 2025-10-05 17:59:27,442 basehttp "OPTIONS /api/moderation/history/2/verdict/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:59:27,469 views User admin set final verdict to approved for moderation 2
+INFO 2025-10-05 17:59:27,470 basehttp "POST /api/moderation/history/2/verdict/ HTTP/1.1" 200 75
+INFO 2025-10-05 17:59:27,522 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1205
+INFO 2025-10-05 17:59:31,314 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-05 17:59:32,751 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-05 17:59:33,536 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-05 17:59:33,885 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-05 17:59:34,308 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
