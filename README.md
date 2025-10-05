@@ -268,7 +268,7 @@ content-moderation-system/
 │   ├── policies/
 │   └── moderation_files/
 ├── policy_store/            # Chroma vector database
-├── frontend/                # Future frontend app
+├── frontend/                # React based frontend
 ├── manage.py
 ├── requirements.txt
 ├── .env
