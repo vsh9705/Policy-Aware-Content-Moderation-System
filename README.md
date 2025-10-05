@@ -6,7 +6,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 
 - **User Authentication**: JWT-based authentication with registration, login, and logout
 - **Policy Management**: Upload and manage policy PDF documents
-- **Content Moderation**: Check documents against policies using AI (Groq LLM)
+- **Content Moderation**: Check documents against policies using RAG Pipeline
 - **Moderation History**: Track all moderation results per user
 - **Vector Database**: Uses Chroma for efficient policy document retrieval
 - **RESTful API**: Built with Django REST Framework
