@@ -1,0 +1,201 @@
+INFO 2025-10-04 23:51:29,844 autoreload Watching for file changes with StatReloader
+WARNING 2025-10-04 23:51:36,873 log Not Found: /
+WARNING 2025-10-04 23:51:36,874 basehttp "GET / HTTP/1.1" 404 2637
+INFO 2025-10-04 23:51:59,392 basehttp "GET /api/auth/register HTTP/1.1" 301 0
+WARNING 2025-10-04 23:51:59,422 log Method Not Allowed: /api/auth/register/
+WARNING 2025-10-04 23:51:59,422 basehttp "GET /api/auth/register/ HTTP/1.1" 405 13500
+WARNING 2025-10-04 23:52:23,614 log Bad Request: /api/auth/register/
+WARNING 2025-10-04 23:52:23,614 basehttp "POST /api/auth/register/ HTTP/1.1" 400 13927
+WARNING 2025-10-04 23:52:32,287 log Bad Request: /api/auth/register/
+WARNING 2025-10-04 23:52:32,288 basehttp "POST /api/auth/register/ HTTP/1.1" 400 13668
+INFO 2025-10-04 23:52:38,038 basehttp "POST /api/auth/register/ HTTP/1.1" 201 14650
+WARNING 2025-10-04 23:52:57,754 log Method Not Allowed: /api/auth/login/
+WARNING 2025-10-04 23:52:57,755 basehttp "GET /api/auth/login/ HTTP/1.1" 405 10389
+WARNING 2025-10-04 23:53:31,816 log Unauthorized: /api/auth/login/
+WARNING 2025-10-04 23:53:31,816 basehttp "POST /api/auth/login/ HTTP/1.1" 401 10326
+WARNING 2025-10-04 23:53:48,704 log Unauthorized: /api/auth/login/
+WARNING 2025-10-04 23:53:48,704 basehttp "POST /api/auth/login/ HTTP/1.1" 401 10326
+INFO 2025-10-04 23:53:52,651 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-10-04 23:53:52,662 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+INFO 2025-10-04 23:54:01,343 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-10-04 23:54:01,356 basehttp "GET /admin/ HTTP/1.1" 200 11555
+INFO 2025-10-04 23:54:03,601 basehttp "GET /admin/auth/user/ HTTP/1.1" 200 16478
+INFO 2025-10-04 23:54:03,632 basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-10-04 23:54:03,636 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-10-04 23:54:03,639 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-04 23:54:03,640 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-10-04 23:54:03,641 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-10-04 23:54:03,641 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-10-04 23:54:03,645 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-10-04 23:54:03,645 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-10-04 23:54:03,647 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-10-04 23:54:03,647 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-10-04 23:54:03,651 basehttp "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-10-04 23:54:03,675 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-10-04 23:54:03,700 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-10-04 23:54:03,701 basehttp "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-10-04 23:54:03,703 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-10-04 23:54:03,704 basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-10-04 23:54:03,704 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-10-04 23:54:07,257 basehttp "GET /admin/auth/user/3/change/ HTTP/1.1" 200 27896
+INFO 2025-10-04 23:54:07,281 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-10-04 23:54:07,282 basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-10-04 23:54:07,282 basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-10-04 23:54:07,283 basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+INFO 2025-10-04 23:54:07,284 basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-10-04 23:54:07,286 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-04 23:54:07,286 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-10-04 23:54:07,319 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-10-04 23:54:07,320 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2025-10-04 23:54:07,396 basehttp "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-10-04 23:54:07,397 basehttp "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-10-04 23:54:07,397 basehttp "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-10-04 23:54:11,380 basehttp "GET /admin/auth/user/3/password/ HTTP/1.1" 200 13167
+INFO 2025-10-04 23:54:11,396 basehttp "GET /static/admin/css/unusable_password_field.css HTTP/1.1" 200 663
+INFO 2025-10-04 23:54:11,399 basehttp "GET /static/admin/js/unusable_password_field.js HTTP/1.1" 200 1480
+INFO 2025-10-04 23:54:17,425 basehttp "POST /admin/auth/user/3/password/ HTTP/1.1" 200 13389
+INFO 2025-10-04 23:54:28,413 basehttp "POST /admin/auth/user/3/password/ HTTP/1.1" 302 0
+INFO 2025-10-04 23:54:28,437 basehttp "GET /admin/auth/user/3/change/ HTTP/1.1" 200 28032
+INFO 2025-10-04 23:54:31,431 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-04 23:54:38,411 basehttp "GET /admin/auth/user/3/password/ HTTP/1.1" 200 13167
+INFO 2025-10-04 23:54:38,902 basehttp "GET /admin/auth/user/3/change/ HTTP/1.1" 200 27896
+INFO 2025-10-04 23:54:39,294 basehttp "GET /admin/auth/user/ HTTP/1.1" 200 16478
+INFO 2025-10-04 23:54:39,661 basehttp "GET /admin/ HTTP/1.1" 200 11935
+INFO 2025-10-04 23:54:40,125 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-10-04 23:54:40,133 basehttp "GET /admin/ HTTP/1.1" 200 11935
+WARNING 2025-10-04 23:54:41,284 log Method Not Allowed: /api/auth/login/
+WARNING 2025-10-04 23:54:41,285 basehttp "GET /api/auth/login/ HTTP/1.1" 405 10389
+INFO 2025-10-04 23:54:56,642 basehttp "POST /api/auth/login/ HTTP/1.1" 200 11522
+WARNING 2025-10-04 23:55:30,469 log Not Found: /api/api/moderation/upload-policy/
+WARNING 2025-10-04 23:55:30,469 basehttp "GET /api/api/moderation/upload-policy/ HTTP/1.1" 404 2754
+WARNING 2025-10-04 23:55:33,908 log Unauthorized: /api/moderation/upload-policy/
+WARNING 2025-10-04 23:55:33,909 basehttp "GET /api/moderation/upload-policy/ HTTP/1.1" 401 8586
+WARNING 2025-10-04 23:55:37,206 log Unauthorized: /api/moderation/upload-policy/
+WARNING 2025-10-04 23:55:37,207 basehttp "GET /api/moderation/upload-policy/ HTTP/1.1" 401 8586
+INFO 2025-10-05 00:17:25,857 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:17:26,087 basehttp "POST /api/auth/login/ HTTP/1.1" 200 785
+INFO 2025-10-05 00:17:34,857 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:17:34,862 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 00:17:36,034 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:17:36,047 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:17:36,620 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 00:17:42,781 basehttp "OPTIONS /api/moderation/upload-policy/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:17:42,785 views User vasusharma uploading 1 policy files
+INFO 2025-10-05 00:17:42,800 views Saved policy file: Hate speech not allowed.pdf
+INFO 2025-10-05 00:17:42,801 policy_store Building/updating policy store with 1 files
+DEBUG 2025-10-05 00:17:42,890 policy_store Loaded /home/vasu/repos/sem5project/media/policies/Hate_speech_not_allowed.pdf
+INFO 2025-10-05 00:17:42,890 policy_store Split into 1 chunks
+INFO 2025-10-05 00:17:46,287 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 00:17:46,287 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 00:17:50,017 policy_store Creating new policy store
+INFO 2025-10-05 00:17:50,351 posthog Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO 2025-10-05 00:17:51,288 policy_store Policy store updated successfully
+INFO 2025-10-05 00:17:51,288 views Policy store updated successfully
+INFO 2025-10-05 00:17:51,290 basehttp "POST /api/moderation/upload-policy/ HTTP/1.1" 201 354
+INFO 2025-10-05 00:17:54,253 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:01,270 basehttp "OPTIONS /api/moderation/moderate/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:18:01,317 views User vasusharma moderating file: I hate you.pdf
+INFO 2025-10-05 00:18:01,317 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 00:18:01,318 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 00:18:04,313 policy_store Loading existing policy store
+INFO 2025-10-05 00:18:04,317 moderation_engine Starting moderation for: I hate you.pdf
+INFO 2025-10-05 00:18:04,317 moderation_engine Loading PDF: I hate you.pdf
+INFO 2025-10-05 00:18:04,319 moderation_engine Split I hate you.pdf into 1 chunks
+INFO 2025-10-05 00:18:04,319 moderation_engine Processing 1 chunks for moderation
+INFO 2025-10-05 00:18:04,319 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 00:18:04,515 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 00:18:04,515 moderation_engine Moderating chunk 0/1: len=10
+INFO 2025-10-05 00:18:04,827 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO 2025-10-05 00:18:04,838 moderation_engine Chunk 0: VIOLATION detected
+INFO 2025-10-05 00:18:04,838 moderation_engine Moderation complete for I hate you.pdf: verdict=violation_found, violations=1, reviews=0, allowed=0/1
+INFO 2025-10-05 00:18:04,867 views Moderation complete for I hate you.pdf: verdict=violation_found
+INFO 2025-10-05 00:18:04,870 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 200 608
+INFO 2025-10-05 00:18:07,251 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:19,065 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:23,761 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:24,132 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:25,704 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:26,157 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:26,490 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:27,528 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:29,146 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:34,471 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:34,826 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:35,169 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:35,930 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:37,304 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:37,667 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:38,991 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:39,333 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:39,724 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:51,701 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:52,103 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:18:52,411 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:18:59,689 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:00,462 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:19:00,888 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:01,630 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:19:02,629 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:03,582 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:05,561 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:13,273 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:14,271 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:19:15,622 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:20:50,122 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:20:51,096 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:20:55,850 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:20:57,283 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 255
+INFO 2025-10-05 00:20:58,057 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 254
+INFO 2025-10-05 00:21:03,307 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:21:03,327 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 00:21:32,346 basehttp "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2025-10-05 00:21:32,590 basehttp "POST /api/auth/register/ HTTP/1.1" 201 779
+INFO 2025-10-05 00:21:34,903 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:35,532 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:21:35,846 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:38,256 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:38,741 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:21:39,093 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:40,215 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:40,708 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:21:41,264 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:21:45,422 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 00:21:51,330 basehttp "POST /api/auth/login/ HTTP/1.1" 200 767
+INFO 2025-10-05 00:21:59,265 basehttp "GET /admin/ HTTP/1.1" 200 11935
+INFO 2025-10-05 00:22:01,307 basehttp "GET /admin/accounts/userprofile/ HTTP/1.1" 200 15592
+INFO 2025-10-05 00:22:01,339 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-05 00:22:08,354 basehttp "GET /admin/moderation/policydocument/ HTTP/1.1" 200 15827
+INFO 2025-10-05 00:22:08,370 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-05 00:22:10,880 basehttp "GET /admin/moderation/moderationresult/ HTTP/1.1" 200 16999
+INFO 2025-10-05 00:22:10,900 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-05 00:22:12,267 basehttp "GET /admin/moderation/moderationresult/1/change/ HTTP/1.1" 200 24084
+INFO 2025-10-05 00:22:12,288 basehttp "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+INFO 2025-10-05 00:22:12,290 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-05 00:22:14,738 basehttp "GET /admin/moderation/violationdetail/ HTTP/1.1" 200 14679
+INFO 2025-10-05 00:22:14,759 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-10-05 00:22:20,015 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:20,320 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:20,680 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:22,177 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:22,525 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:23,215 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:30,091 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:30,489 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:30,920 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:34,442 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:34,797 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:35,149 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:35,863 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:46,909 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:47,642 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:48,020 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:48,498 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:50,802 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:22:51,336 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:22:51,846 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:23:30,847 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:23:31,288 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:23:31,798 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:23:36,195 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 00:23:36,614 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 00:23:37,017 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
