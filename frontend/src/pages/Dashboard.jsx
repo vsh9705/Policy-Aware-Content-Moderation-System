@@ -9,7 +9,10 @@ const Dashboard = () => {
   const [moderateFile, setModerateFile] = useState(null);
   const [policies, setPolicies] = useState([]);
   const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [policyLoading, setPolicyLoading] = useState(false);
+  const [moderationLoading, setModerationLoading] = useState(false);
+  const [selectedResult, setSelectedResult] = useState(null);
+  const [viewingFile, setViewingFile] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [moderationResult, setModerationResult] = useState(null);
   const [stats, setStats] = useState({
@@ -69,7 +72,7 @@ const Dashboard = () => {
       return;
     }
 
-    setLoading(true);
+    setPolicyLoading(true);
     try {
       await policyAPI.uploadPolicies(policyFiles);
       showMessage('success', 'Policies uploaded successfully!');
@@ -79,7 +82,7 @@ const Dashboard = () => {
     } catch (error) {
       showMessage('error', error.response?.data?.error || 'Failed to upload policies');
     } finally {
-      setLoading(false);
+      setPolicyLoading(false);
     }
   };
 
@@ -90,7 +93,7 @@ const Dashboard = () => {
       return;
     }
 
-    setLoading(true);
+    setModerationLoading(true);
     setModerationResult(null);
     try {
       const response = await moderationAPI.moderateFile(moderateFile);
@@ -102,14 +105,14 @@ const Dashboard = () => {
     } catch (error) {
       showMessage('error', error.response?.data?.error || 'Failed to moderate file');
     } finally {
-      setLoading(false);
+      setModerationLoading(false);
     }
   };
 
   const handleClearPolicies = async () => {
     if (!window.confirm('Are you sure you want to clear all policies?')) return;
 
-    setLoading(true);
+    setPolicyLoading(true);
     try {
       await policyAPI.clearPolicies();
       showMessage('success', 'All policies cleared!');
@@ -118,7 +121,33 @@ const Dashboard = () => {
     } catch (error) {
       showMessage('error', 'Failed to clear policies');
     } finally {
-      setLoading(false);
+      setPolicyLoading(false);
+    }
+  };
+
+  const handleFinalVerdict = async (resultId, verdict) => {
+    try {
+      await moderationAPI.updateFinalVerdict(resultId, verdict);
+      showMessage('success', `File marked as ${verdict === 'approved' ? 'Clean' : 'Violation'}`);
+      loadHistory();
+      if (selectedResult && selectedResult.id === resultId) {
+        setSelectedResult(null);
+      }
+      if (moderationResult && moderationResult.id === resultId) {
+        setModerationResult(null);
+      }
+    } catch (error) {
+      showMessage('error', 'Failed to update verdict');
+    }
+  };
+
+  const handleViewDetails = async (resultId) => {
+    try {
+      const response = await moderationAPI.getDetail(resultId);
+      setSelectedResult(response.data);
+      setViewingFile(true);
+    } catch (error) {
+      showMessage('error', 'Failed to load result details');
     }
   };
 
@@ -216,7 +245,7 @@ const Dashboard = () => {
                     <p style={styles.fileCount}>{policyFiles.length} file(s) selected</p>
                   )}
                   <div style={styles.buttonGroup}>
-                    <button type="submit" disabled={loading} style={styles.primaryButton}>
+                    <button type="submit" disabled={policyLoading} style={styles.primaryButton}>
                       Upload Policy
                     </button>
                     {policies.length > 0 && (
@@ -224,7 +253,7 @@ const Dashboard = () => {
                         type="button" 
                         onClick={handleClearPolicies} 
                         style={styles.dangerButtonSmall}
-                        disabled={loading}
+                        disabled={policyLoading}
                       >
                         <Trash2 size={16} />
                         Clear All
@@ -259,8 +288,8 @@ const Dashboard = () => {
                   {moderateFile && (
                     <p style={styles.fileCount}>{moderateFile.name}</p>
                   )}
-                  <button type="submit" disabled={loading} style={styles.primaryButton}>
-                    {loading ? 'Analyzing...' : 'Submit for Moderation'}
+                  <button type="submit" disabled={moderationLoading} style={styles.primaryButton}>
+                    {moderationLoading ? 'Analyzing...' : 'Submit for Moderation'}
                   </button>
                 </form>
               </div>
@@ -358,6 +387,15 @@ const Dashboard = () => {
                     }}>
                       {item.verdict === 'clean' ? 'Clean' : 'Violations Found'}
                     </div>
+                    {item.final_verdict !== 'pending' && (
+                      <div style={{
+                        ...styles.finalVerdictSmall,
+                        backgroundColor: item.final_verdict === 'approved' ? '#d1fae5' : '#fee2e2',
+                        color: item.final_verdict === 'approved' ? '#065f46' : '#991b1b',
+                      }}>
+                        Final: {item.final_verdict === 'approved' ? 'Approved' : 'Rejected'}
+                      </div>
+                    )}
                     <div style={styles.historyStats}>
                       <div style={styles.historyStat}>
                         <span style={styles.historyStatValue}>{item.total_chunks}</span>
@@ -380,6 +418,12 @@ const Dashboard = () => {
                       <Clock size={14} />
                       {new Date(item.created_at).toLocaleString()}
                     </div>
+                    <button
+                      onClick={() => handleViewDetails(item.id)}
+                      style={styles.viewDetailsButton}
+                    >
+                      View Details & Make Decision
+                    </button>
                   </div>
                 ))}
               </div>
@@ -394,6 +438,129 @@ const Dashboard = () => {
         >
           {activeTab === 'main' ? <History size={24} /> : <Shield size={24} />}
         </button>
+
+        {/* Detail View Modal */}
+        {viewingFile && selectedResult && (
+          <div style={styles.modal} onClick={() => setViewingFile(false)}>
+            <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div style={styles.modalHeader}>
+                <h2 style={styles.modalTitle}>{selectedResult.filename}</h2>
+                <button onClick={() => setViewingFile(false)} style={styles.closeButton}>×</button>
+              </div>
+              
+              <div style={styles.modalBody}>
+                <div style={styles.resultHeader}>
+                  <div style={{
+                    ...styles.verdictBadge,
+                    backgroundColor: selectedResult.verdict === 'clean' ? '#d1fae5' : '#fee2e2',
+                    color: selectedResult.verdict === 'clean' ? '#065f46' : '#991b1b',
+                  }}>
+                    {selectedResult.verdict === 'clean' ? (
+                      <><CheckCircle size={20} /> Clean</>
+                    ) : (
+                      <><AlertCircle size={20} /> Violations Found</>
+                    )}
+                  </div>
+                </div>
+
+                <div style={styles.resultStats}>
+                  <div style={styles.resultStat}>
+                    <span style={styles.resultStatLabel}>Total</span>
+                    <span style={styles.resultStatValue}>{selectedResult.total_chunks}</span>
+                  </div>
+                  <div style={styles.resultStat}>
+                    <span style={styles.resultStatLabel}>Allowed</span>
+                    <span style={{...styles.resultStatValue, color: '#10b981'}}>{selectedResult.allowed_chunks}</span>
+                  </div>
+                  <div style={styles.resultStat}>
+                    <span style={styles.resultStatLabel}>Review</span>
+                    <span style={{...styles.resultStatValue, color: '#f59e0b'}}>{selectedResult.review_chunks}</span>
+                  </div>
+                  <div style={styles.resultStat}>
+                    <span style={styles.resultStatLabel}>Violations</span>
+                    <span style={{...styles.resultStatValue, color: '#ef4444'}}>{selectedResult.violation_chunks}</span>
+                  </div>
+                </div>
+
+                {selectedResult.violations && selectedResult.violations.length > 0 && (
+                  <div style={styles.violationsSection}>
+                    <h4 style={styles.violationsTitle}>Issues Found</h4>
+                    {selectedResult.violations.map((violation, idx) => (
+                      <div key={idx} style={styles.violationCard}>
+                        <div style={styles.violationHeader}>
+                          <span style={{
+                            ...styles.violationBadge,
+                            backgroundColor: violation.verdict === 'violation' ? '#fee2e2' : '#fef3c7',
+                            color: violation.verdict === 'violation' ? '#991b1b' : '#92400e',
+                          }}>
+                            {violation.verdict.toUpperCase()}
+                          </span>
+                        </div>
+                        <p style={styles.chunkText}>{violation.chunk_text}</p>
+                        <p style={styles.explanation}>{violation.explanation}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {selectedResult.final_verdict === 'pending' && (
+                  <div style={styles.finalVerdictSection}>
+                    <h4 style={styles.finalVerdictTitle}>Make Final Decision</h4>
+                    {selectedResult.file_url && (
+                      <a 
+                        href={selectedResult.file_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={styles.viewFileButton}
+                      >
+                        <FileText size={18} />
+                        View Original File
+                      </a>
+                    )}
+                    <div style={styles.verdictButtons}>
+                      <button
+                        onClick={() => {
+                          handleFinalVerdict(selectedResult.id, 'approved');
+                          setViewingFile(false);
+                        }}
+                        style={styles.approveButton}
+                      >
+                        <CheckCircle size={20} />
+                        Approve as Clean
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleFinalVerdict(selectedResult.id, 'rejected');
+                          setViewingFile(false);
+                        }}
+                        style={styles.rejectButton}
+                      >
+                        <AlertCircle size={20} />
+                        Reject as Violation
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {selectedResult.final_verdict !== 'pending' && (
+                  <div style={styles.finalVerdictSection}>
+                    <div style={{
+                      ...styles.finalVerdictBadge,
+                      backgroundColor: selectedResult.final_verdict === 'approved' ? '#d1fae5' : '#fee2e2',
+                      color: selectedResult.final_verdict === 'approved' ? '#065f46' : '#991b1b',
+                    }}>
+                      {selectedResult.final_verdict === 'approved' ? (
+                        <><CheckCircle size={20} /> Final Decision: Approved</>
+                      ) : (
+                        <><AlertCircle size={20} /> Final Decision: Rejected</>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

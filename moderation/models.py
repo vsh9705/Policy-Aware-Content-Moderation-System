@@ -29,15 +29,28 @@ class ModerationResult(models.Model):
         ('error', 'Error'),
     ]
     
+    FINAL_VERDICT_CHOICES = [
+        ('pending', 'Pending Review'),
+        ('approved', 'Approved - Clean'),
+        ('rejected', 'Rejected - Violation'),
+    ]
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='moderation_results')
     file = models.FileField(upload_to='moderation_files/')
     filename = models.CharField(max_length=255)
     verdict = models.CharField(max_length=20, choices=VERDICT_CHOICES)
+    final_verdict = models.CharField(
+        max_length=20, 
+        choices=FINAL_VERDICT_CHOICES, 
+        default='pending',
+        help_text="User's final decision after review"
+    )
     total_chunks = models.IntegerField(default=0)
     allowed_chunks = models.IntegerField(default=0)
     review_chunks = models.IntegerField(default=0)
     violation_chunks = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.filename} - {self.verdict} - {self.user.username}"

@@ -124,14 +124,16 @@ def moderate_file_against_policy(policy_store: Chroma, file_path: str, filename:
                 logger.debug(f"Chunk {idx}: OK")
                 
             else:
+                # Treat unclear responses as needing review
+                review_count += 1
                 violations.append({
                     "chunk_id": chunk["metadata"].get("chunk_id"),
                     "chunk_text": query_text[:800],
-                    "verdict": "unclear",
-                    "explanation": answer,
+                    "verdict": "review",
+                    "explanation": f"REVIEW: Unclear moderation result - {answer}",
                     "sources": []
                 })
-                logger.warning(f"Chunk {idx}: UNCLEAR verdict")
+                logger.warning(f"Chunk {idx}: UNCLEAR verdict, marked for REVIEW")
                 
         except Exception as e:
             logger.exception(f"Error moderating chunk {idx}")

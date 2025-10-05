@@ -6,7 +6,8 @@ from .views import (
     clear_policies_view,
     moderate_file_view,
     moderation_history_view,
-    moderation_detail_view
+    moderation_detail_view,
+    update_final_verdict_view
 )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path('moderate/', moderate_file_view, name='moderate_file'),
     path('history/', moderation_history_view, name='moderation_history'),
     path('history/<int:pk>/', moderation_detail_view, name='moderation_detail'),
+    path('history/<int:pk>/verdict/', update_final_verdict_view, name='update_final_verdict'),
 ]

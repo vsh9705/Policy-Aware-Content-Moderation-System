@@ -498,3 +498,549 @@ INFO 2025-10-05 17:07:47,909 basehttp "GET /api/moderation/policies/ HTTP/1.1" 2
 INFO 2025-10-05 17:07:47,915 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
 INFO 2025-10-05 17:07:47,925 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
 INFO 2025-10-05 17:07:47,954 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:27,249 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:27,253 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:27,256 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:27,261 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:29,258 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:29,263 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:29,267 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:29,272 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:30,159 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:30,163 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:30,166 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:30,171 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:30,791 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:30,796 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:09:30,798 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:09:30,803 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:15:06,669 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+WARNING 2025-10-05 17:15:15,107 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 17:15:15,107 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+INFO 2025-10-05 17:15:15,110 basehttp "OPTIONS /api/auth/refresh/ HTTP/1.1" 200 0
+WARNING 2025-10-05 17:15:15,166 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 17:15:15,166 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+WARNING 2025-10-05 17:15:20,323 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 17:15:20,324 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-10-05 17:15:20,327 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 17:15:20,328 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+WARNING 2025-10-05 17:15:30,128 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 17:15:30,128 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-10-05 17:15:30,131 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 17:15:30,131 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+INFO 2025-10-05 17:15:47,655 basehttp "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:15:47,937 basehttp "POST /api/auth/register/ HTTP/1.1" 201 777
+INFO 2025-10-05 17:15:48,006 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:15:48,011 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 17:15:48,017 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 17:15:48,053 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:26:54,800 autoreload /home/vasu/repos/sem5project/moderation/models.py changed, reloading.
+INFO 2025-10-05 17:26:57,684 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:27:59,460 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:28:01,253 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:28:02,470 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:28:02,827 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:28:11,847 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:28:12,742 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:28:20,967 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:28:21,332 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:28:29,588 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:28:30,422 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:33:38,210 autoreload /home/vasu/repos/sem5project/moderation/serializers.py changed, reloading.
+INFO 2025-10-05 17:33:38,773 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:33:51,160 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:33:52,559 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:33:55,799 autoreload /home/vasu/repos/sem5project/moderation/views.py changed, reloading.
+INFO 2025-10-05 17:33:56,119 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:34:05,460 autoreload /home/vasu/repos/sem5project/moderation/urls.py changed, reloading.
+INFO 2025-10-05 17:34:06,565 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:34:24,027 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+ERROR 2025-10-05 17:42:43,730 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+INFO 2025-10-05 17:42:43,732 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:42:43,739 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:42:43,742 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+INFO 2025-10-05 17:42:43,743 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:42:43,746 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+ERROR 2025-10-05 17:42:43,748 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:42:43,748 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+ERROR 2025-10-05 17:43:05,536 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+INFO 2025-10-05 17:43:05,537 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:43:05,537 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:43:05,539 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+INFO 2025-10-05 17:43:05,542 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:43:05,544 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+ERROR 2025-10-05 17:43:05,545 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:43:05,545 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+INFO 2025-10-05 17:43:29,783 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 17:43:33,460 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+ERROR 2025-10-05 17:43:33,507 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+INFO 2025-10-05 17:43:33,508 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:43:33,509 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:43:33,510 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+ERROR 2025-10-05 17:43:33,522 views Error in moderation_history_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: moderation_moderationresult.final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 281, in moderation_history_view
+    'results': serializer.data
+               ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/rest_framework/serializers.py", line 715, in to_representation
+    return [
+           ^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: moderation_moderationresult.final_verdict
+INFO 2025-10-05 17:43:33,523 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+ERROR 2025-10-05 17:43:33,524 log Internal Server Error: /api/moderation/history/
+ERROR 2025-10-05 17:43:33,525 basehttp "GET /api/moderation/history/ HTTP/1.1" 500 69
+INFO 2025-10-05 17:43:42,630 views User admin uploading 1 policy files
+INFO 2025-10-05 17:43:42,658 views Saved policy file: Hate speech not allowed.pdf
+INFO 2025-10-05 17:43:42,659 policy_store Building/updating policy store with 1 files
+DEBUG 2025-10-05 17:43:42,740 policy_store Loaded /home/vasu/repos/sem5project/media/policies/Hate_speech_not_allowed_lJvT7X1.pdf
+INFO 2025-10-05 17:43:42,740 policy_store Split into 1 chunks
+INFO 2025-10-05 17:43:46,552 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 17:43:46,552 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 17:43:50,706 policy_store Creating new policy store
+INFO 2025-10-05 17:43:51,213 posthog Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO 2025-10-05 17:43:52,250 policy_store Policy store updated successfully
+INFO 2025-10-05 17:43:52,251 views Policy store updated successfully
+INFO 2025-10-05 17:43:52,252 basehttp "POST /api/moderation/upload-policy/ HTTP/1.1" 201 357
+INFO 2025-10-05 17:43:52,263 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:44:02,998 views User admin moderating file: I hate you.pdf
+INFO 2025-10-05 17:44:02,999 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 17:44:02,999 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 17:44:06,831 policy_store Loading existing policy store
+INFO 2025-10-05 17:44:06,835 moderation_engine Starting moderation for: I hate you.pdf
+INFO 2025-10-05 17:44:06,835 moderation_engine Loading PDF: I hate you.pdf
+INFO 2025-10-05 17:44:06,837 moderation_engine Split I hate you.pdf into 1 chunks
+INFO 2025-10-05 17:44:06,837 moderation_engine Processing 1 chunks for moderation
+INFO 2025-10-05 17:44:06,837 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 17:44:06,987 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 17:44:06,988 moderation_engine Moderating chunk 0/1: len=10
+INFO 2025-10-05 17:44:07,339 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO 2025-10-05 17:44:07,351 moderation_engine Chunk 0: VIOLATION detected
+INFO 2025-10-05 17:44:07,351 moderation_engine Moderation complete for I hate you.pdf: verdict=violation_found, violations=1, reviews=0, allowed=0/1
+ERROR 2025-10-05 17:44:07,353 views Error in moderate_file_view
+Traceback (most recent call last):
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table moderation_moderationresult has no column named final_verdict
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 228, in moderate_file_view
+    moderation_result = ModerationResult.objects.create(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: table moderation_moderationresult has no column named final_verdict
+ERROR 2025-10-05 17:44:07,357 log Internal Server Error: /api/moderation/moderate/
+ERROR 2025-10-05 17:44:07,358 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 500 79
+INFO 2025-10-05 17:46:54,074 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:47:22,716 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 17:47:30,901 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:47:30,904 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 829
+INFO 2025-10-05 17:47:30,909 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:47:30,915 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 829
+INFO 2025-10-05 17:47:39,642 views User admin moderating file: I hate you.pdf
+INFO 2025-10-05 17:47:42,369 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 17:47:42,370 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 17:47:46,566 policy_store Loading existing policy store
+INFO 2025-10-05 17:47:47,005 posthog Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO 2025-10-05 17:47:47,098 moderation_engine Starting moderation for: I hate you.pdf
+INFO 2025-10-05 17:47:47,098 moderation_engine Loading PDF: I hate you.pdf
+INFO 2025-10-05 17:47:47,172 moderation_engine Split I hate you.pdf into 1 chunks
+INFO 2025-10-05 17:47:47,172 moderation_engine Processing 1 chunks for moderation
+INFO 2025-10-05 17:47:47,172 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 17:47:47,356 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 17:47:47,356 moderation_engine Moderating chunk 0/1: len=10
+INFO 2025-10-05 17:47:48,252 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO 2025-10-05 17:47:48,266 moderation_engine Chunk 0: VIOLATION detected
+INFO 2025-10-05 17:47:48,266 moderation_engine Moderation complete for I hate you.pdf: verdict=violation_found, violations=1, reviews=0, allowed=0/1
+INFO 2025-10-05 17:47:48,309 views Moderation complete for I hate you.pdf: verdict=violation_found
+INFO 2025-10-05 17:47:48,313 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 200 755
+INFO 2025-10-05 17:47:48,326 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1101
+INFO 2025-10-05 17:48:15,952 basehttp "OPTIONS /api/moderation/history/5/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:48:15,959 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 755
+INFO 2025-10-05 17:48:16,182 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 755
+INFO 2025-10-05 17:48:24,181 basehttp "OPTIONS /api/moderation/history/4/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:48:24,187 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:48:26,646 basehttp "GET /media/moderation_files/Vasu_Sharma_CV.pdf HTTP/1.1" 200 101037
+WARNING 2025-10-05 17:48:26,713 log Not Found: /favicon.ico
+WARNING 2025-10-05 17:48:26,713 basehttp "GET /favicon.ico HTTP/1.1" 404 2688
+INFO 2025-10-05 17:48:31,551 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 755
+INFO 2025-10-05 17:48:34,010 basehttp "OPTIONS /api/moderation/history/5/verdict/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:48:34,039 views User admin set final verdict to approved for moderation 5
+INFO 2025-10-05 17:48:34,039 basehttp "POST /api/moderation/history/5/verdict/ HTTP/1.1" 200 75
+INFO 2025-10-05 17:48:34,092 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1127
+INFO 2025-10-05 17:48:43,478 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:48:56,127 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:48:56,131 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1127
+INFO 2025-10-05 17:48:56,138 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:48:56,146 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1127
+INFO 2025-10-05 17:49:00,762 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:49:02,508 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:49:04,953 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:49:10,346 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420
+INFO 2025-10-05 17:49:11,399 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:49:12,025 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:49:18,177 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-05 17:49:21,669 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 420

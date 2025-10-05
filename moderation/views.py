@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 """
 Views for moderation API endpoints
 """
@@ -13,11 +10,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.conf import settings
+from django.utils import timezone
 from .models import PolicyDocument, ModerationResult, ViolationDetail
 from .serializers import (
     PolicyDocumentSerializer,
     ModerationResultSerializer,
-    ModerationResultListSerializer
+    ModerationResultListSerializer,
+    FinalVerdictSerializer
 )
 from .modules.policy_store import (
     build_or_update_policy_store,
@@ -252,7 +251,7 @@ def moderate_file_view(request):
                        f"verdict={moderation_result.verdict}")
             
             # Serialize and return result
-            serializer = ModerationResultSerializer(moderation_result)
+            serializer = ModerationResultSerializer(moderation_result, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
             
         finally:
@@ -297,7 +296,7 @@ def moderation_detail_view(request, pk):
     """
     try:
         result = ModerationResult.objects.get(pk=pk, user=request.user)
-        serializer = ModerationResultSerializer(result)
+        serializer = ModerationResultSerializer(result, context={'request': request})
         
         return Response(serializer.data, status=status.HTTP_200_OK)
         
@@ -308,6 +307,43 @@ def moderation_detail_view(request, pk):
         )
     except Exception as e:
         logger.exception("Error in moderation_detail_view")
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_final_verdict_view(request, pk):
+    """
+    Update the final verdict for a moderation result after user review.
+    """
+    try:
+        result = ModerationResult.objects.get(pk=pk, user=request.user)
+        
+        serializer = FinalVerdictSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        final_verdict = serializer.validated_data['final_verdict']
+        result.final_verdict = final_verdict
+        result.reviewed_at = timezone.now()
+        result.save()
+        
+        logger.info(f"User {request.user.username} set final verdict to {final_verdict} "
+                   f"for moderation {pk}")
+        
+        return Response({
+            'message': 'Final verdict updated successfully',
+            'final_verdict': final_verdict
+        }, status=status.HTTP_200_OK)
+        
+    except ModerationResult.DoesNotExist:
+        return Response(
+            {'error': 'Moderation result not found'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+    except Exception as e:
+        logger.exception("Error updating final verdict")
         return Response(
             {'error': str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
