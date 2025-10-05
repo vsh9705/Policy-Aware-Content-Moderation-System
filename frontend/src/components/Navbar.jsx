@@ -9,15 +9,23 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       <div style={styles.container}>
         <div style={styles.brand}>
-          <Shield size={24} style={styles.icon} />
-          <span style={styles.brandText}>Content Moderation</span>
+          <div style={styles.iconWrapper}>
+            <Shield size={28} style={styles.icon} />
+          </div>
+          <div style={styles.brandText}>
+            <div style={styles.brandTitle}>Content Moderation AI</div>
+            <div style={styles.brandSubtitle}>AI-Powered Policy Enforcement</div>
+          </div>
         </div>
         
         <div style={styles.rightSection}>
-          <span style={styles.username}>Welcome, {user?.username}</span>
+          <div style={styles.userInfo}>
+            <div style={styles.userName}>{user?.username || 'User'}</div>
+            <div style={styles.userRole}>Administrator</div>
+          </div>
           <button onClick={logout} style={styles.logoutBtn}>
             <LogOut size={18} />
-            <span style={{ marginLeft: '8px' }}>Logout</span>
+            <span style={{ marginLeft: '8px' }}>Sign Out</span>
           </button>
         </div>
       </div>
@@ -27,13 +35,13 @@ const Navbar = () => {
 
 const styles = {
   navbar: {
-    backgroundColor: '#1f2937',
+    backgroundColor: 'rgba(31, 41, 55, 0.95)',
     color: 'white',
     padding: '1rem 0',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    backdropFilter: 'blur(10px)',
   },
   container: {
-    maxWidth: '1200px',
+    maxWidth: '1400px',
     margin: '0 auto',
     padding: '0 1rem',
     display: 'flex',
@@ -43,37 +51,65 @@ const styles = {
   brand: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
+    gap: '1rem',
+  },
+  iconWrapper: {
+    width: '48px',
+    height: '48px',
+    borderRadius: '12px',
+    background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
-    color: '#3b82f6',
+    color: 'white',
   },
   brandText: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  brandTitle: {
+    fontSize: '1.25rem',
+    fontWeight: '700',
     color: 'white',
+    lineHeight: 1.2,
+  },
+  brandSubtitle: {
+    fontSize: '0.75rem',
+    color: '#9ca3af',
+    fontWeight: '400',
   },
   rightSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
+    gap: '1.5rem',
   },
-  username: {
+  userInfo: {
+    textAlign: 'right',
+  },
+  userName: {
     fontSize: '0.9rem',
-    color: '#d1d5db',
+    fontWeight: '600',
+    color: 'white',
+    lineHeight: 1.2,
+  },
+  userRole: {
+    fontSize: '0.75rem',
+    color: '#9ca3af',
   },
   logoutBtn: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#ef4444',
+    backgroundColor: 'transparent',
     color: 'white',
-    border: 'none',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
+    borderRadius: '0.5rem',
     cursor: 'pointer',
     fontSize: '0.875rem',
     fontWeight: '500',
-    transition: 'background-color 0.2s',
+    transition: 'all 0.2s',
   },
 };
 

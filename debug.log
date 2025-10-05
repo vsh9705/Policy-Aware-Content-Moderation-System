@@ -199,3 +199,302 @@ INFO 2025-10-05 00:23:31,798 basehttp "GET /api/moderation/policies/ HTTP/1.1" 2
 INFO 2025-10-05 00:23:36,195 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
 INFO 2025-10-05 00:23:36,614 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
 INFO 2025-10-05 00:23:37,017 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 11:53:53,653 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 11:55:26,377 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-10-05 11:55:26,635 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 11:55:30,656 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 11:55:30,662 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 11:55:32,583 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-05 11:55:32,597 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 11:55:34,424 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-10-05 11:55:34,453 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 12:13:11,900 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 12:13:14,196 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 12:15:39,524 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 12:18:59,360 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 12:18:59,361 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 12:19:42,347 basehttp "OPTIONS /api/moderation/upload-policy/ HTTP/1.1" 200 0
+INFO 2025-10-05 12:19:42,393 views User admin uploading 1 policy files
+INFO 2025-10-05 12:19:42,408 views Saved policy file: Hate speech not allowed.pdf
+INFO 2025-10-05 12:19:42,408 policy_store Building/updating policy store with 1 files
+DEBUG 2025-10-05 12:19:42,479 policy_store Loaded /home/vasu/repos/sem5project/media/policies/Hate_speech_not_allowed_3Euvnw8.pdf
+INFO 2025-10-05 12:19:42,479 policy_store Split into 1 chunks
+INFO 2025-10-05 12:19:45,251 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 12:19:45,251 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 12:19:49,013 policy_store Updating existing policy store
+INFO 2025-10-05 12:19:49,290 posthog Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO 2025-10-05 12:19:50,076 policy_store Policy store updated successfully
+INFO 2025-10-05 12:19:50,076 views Policy store updated successfully
+INFO 2025-10-05 12:19:50,078 basehttp "POST /api/moderation/upload-policy/ HTTP/1.1" 201 357
+INFO 2025-10-05 12:19:50,128 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:19:55,349 basehttp "OPTIONS /api/moderation/moderate/ HTTP/1.1" 200 0
+INFO 2025-10-05 12:19:55,393 views User admin moderating file: I hate you.pdf
+INFO 2025-10-05 12:19:55,393 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 12:19:55,393 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 12:19:58,324 policy_store Loading existing policy store
+INFO 2025-10-05 12:19:58,327 moderation_engine Starting moderation for: I hate you.pdf
+INFO 2025-10-05 12:19:58,327 moderation_engine Loading PDF: I hate you.pdf
+INFO 2025-10-05 12:19:58,329 moderation_engine Split I hate you.pdf into 1 chunks
+INFO 2025-10-05 12:19:58,338 moderation_engine Processing 1 chunks for moderation
+INFO 2025-10-05 12:19:58,338 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 12:19:58,475 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 12:19:58,475 moderation_engine Moderating chunk 0/1: len=10
+INFO 2025-10-05 12:19:58,771 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO 2025-10-05 12:19:58,788 moderation_engine Chunk 0: VIOLATION detected
+INFO 2025-10-05 12:19:58,789 moderation_engine Moderation complete for I hate you.pdf: verdict=violation_found, violations=1, reviews=0, allowed=0/1
+INFO 2025-10-05 12:19:58,815 views Moderation complete for I hate you.pdf: verdict=violation_found
+INFO 2025-10-05 12:19:58,818 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 200 682
+INFO 2025-10-05 12:19:58,869 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 250
+INFO 2025-10-05 12:20:08,170 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:20:08,170 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 250
+INFO 2025-10-05 12:20:08,178 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:20:08,180 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 250
+INFO 2025-10-05 12:20:09,520 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 250
+INFO 2025-10-05 12:20:09,520 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:20:09,526 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:20:09,529 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 250
+INFO 2025-10-05 12:20:31,120 views User admin moderating file: BNY cover letter.pdf
+INFO 2025-10-05 12:20:31,122 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 12:20:31,122 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 12:20:34,368 policy_store Loading existing policy store
+INFO 2025-10-05 12:20:34,371 moderation_engine Starting moderation for: BNY cover letter.pdf
+INFO 2025-10-05 12:20:34,371 moderation_engine Loading PDF: BNY cover letter.pdf
+INFO 2025-10-05 12:20:34,395 moderation_engine Split BNY cover letter.pdf into 2 chunks
+INFO 2025-10-05 12:20:34,396 moderation_engine Processing 2 chunks for moderation
+INFO 2025-10-05 12:20:34,396 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 12:20:34,426 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 12:20:34,426 moderation_engine Moderating chunk 0/2: len=976
+INFO 2025-10-05 12:20:34,764 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG 2025-10-05 12:20:34,765 moderation_engine Chunk 0: OK
+DEBUG 2025-10-05 12:20:34,765 moderation_engine Moderating chunk 1/2: len=937
+INFO 2025-10-05 12:20:35,058 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG 2025-10-05 12:20:35,059 moderation_engine Chunk 1: OK
+INFO 2025-10-05 12:20:35,059 moderation_engine Moderation complete for BNY cover letter.pdf: verdict=clean, violations=0, reviews=0, allowed=2/2
+INFO 2025-10-05 12:20:35,076 views Moderation complete for BNY cover letter.pdf: verdict=clean
+INFO 2025-10-05 12:20:35,078 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 200 281
+INFO 2025-10-05 12:20:35,088 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:21:02,408 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:21:02,932 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:21:07,213 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:21:09,338 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:21:09,850 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:21:10,402 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:21:10,799 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:22:41,117 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:41,434 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:22:41,828 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:43,985 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:45,826 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:46,761 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:48,661 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:48,998 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:22:49,297 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:49,678 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:22:49,922 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 12:22:50,316 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 12:22:50,586 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+WARNING 2025-10-05 13:49:44,728 log Unauthorized: /api/moderation/policies/
+WARNING 2025-10-05 13:49:44,731 basehttp "GET /api/moderation/policies/ HTTP/1.1" 401 172
+INFO 2025-10-05 13:49:44,735 basehttp "OPTIONS /api/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-10-05 13:49:44,905 basehttp "POST /api/auth/refresh/ HTTP/1.1" 200 489
+INFO 2025-10-05 13:49:44,959 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:49:45,305 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:49:45,994 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:49:46,763 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:50:04,013 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:50:04,814 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:50:05,562 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:50:05,998 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:51:55,033 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:51:55,034 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:52:12,976 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:52:12,979 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:52:12,984 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:52:12,988 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+WARNING 2025-10-05 13:52:48,022 log Bad Request: /api/auth/logout/
+WARNING 2025-10-05 13:52:48,022 basehttp "POST /api/auth/logout/ HTTP/1.1" 400 32
+WARNING 2025-10-05 13:52:57,737 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 13:52:57,738 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-10-05 13:52:57,741 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 13:52:57,741 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+WARNING 2025-10-05 13:53:03,182 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 13:53:03,183 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-10-05 13:53:03,186 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 13:53:03,186 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+INFO 2025-10-05 13:53:10,411 basehttp "POST /api/auth/login/ HTTP/1.1" 200 664
+INFO 2025-10-05 13:53:10,457 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 13:53:10,458 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 13:53:10,471 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 24
+INFO 2025-10-05 13:53:10,474 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 13:53:15,437 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 13:53:19,287 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 13:53:19,330 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:53:19,332 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:53:19,342 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:53:19,376 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:56:18,005 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 13:56:18,006 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-05 13:56:18,019 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:56:18,020 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:56:37,475 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:56:37,478 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:59:14,086 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:59:14,087 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 13:59:14,095 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 13:59:14,099 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:00:52,021 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:00:52,021 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 14:00:58,778 basehttp "OPTIONS /api/moderation/clear-policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 14:00:58,803 policy_store Clearing policy store
+INFO 2025-10-05 14:00:58,807 policy_store Policy store directory removed
+INFO 2025-10-05 14:00:58,808 policy_store Policy store cleared successfully
+INFO 2025-10-05 14:00:58,808 views User admin cleared 1 policies and reset policy store
+INFO 2025-10-05 14:00:58,809 basehttp "POST /api/moderation/clear-policies/ HTTP/1.1" 200 67
+INFO 2025-10-05 14:00:58,858 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 14:01:23,910 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 14:01:23,917 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:01:23,919 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 14:01:23,926 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:02:02,818 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-10-05 14:02:02,851 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 14:02:07,554 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-10-05 14:02:07,794 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 14:02:07,869 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 14:02:07,872 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:02:07,883 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:02:07,912 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 14:02:14,925 views User admin uploading 1 policy files
+INFO 2025-10-05 14:02:14,943 views Saved policy file: Hate speech not allowed.pdf
+INFO 2025-10-05 14:02:14,943 policy_store Building/updating policy store with 1 files
+DEBUG 2025-10-05 14:02:14,957 policy_store Loaded /home/vasu/repos/sem5project/media/policies/Hate_speech_not_allowed_9bDTZKv.pdf
+INFO 2025-10-05 14:02:14,957 policy_store Split into 1 chunks
+INFO 2025-10-05 14:02:14,964 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 14:02:14,965 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 14:02:19,121 policy_store Creating new policy store
+ERROR 2025-10-05 14:02:19,143 views Error building policy store
+Traceback (most recent call last):
+  File "/home/vasu/repos/sem5project/moderation/views.py", line 69, in upload_policy_view
+    policy_store = build_or_update_policy_store(file_paths)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/repos/sem5project/moderation/modules/policy_store.py", line 74, in build_or_update_policy_store
+    store = Chroma.from_documents(
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/langchain_community/vectorstores/chroma.py", line 887, in from_documents
+    return cls.from_texts(
+           ^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/langchain_community/vectorstores/chroma.py", line 817, in from_texts
+    chroma_collection = cls(
+                        ^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/langchain_core/_api/deprecation.py", line 226, in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/langchain_community/vectorstores/chroma.py", line 122, in __init__
+    self._client = chromadb.Client(_client_settings)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/__init__.py", line 384, in Client
+    return ClientCreator(tenant=tenant, database=database, settings=settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/api/client.py", line 96, in __init__
+    self._validate_tenant_database(tenant=self.tenant, database=self.database)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/api/client.py", line 478, in _validate_tenant_database
+    raise e
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/api/client.py", line 471, in _validate_tenant_database
+    self._admin_client.get_tenant(name=tenant)
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/api/client.py", line 528, in get_tenant
+    return self._server.get_tenant(name=name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasu/miniconda3/envs/rag/lib/python3.11/site-packages/chromadb/api/rust.py", line 165, in get_tenant
+    tenant = self.bindings.get_tenant(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chromadb.errors.InternalError: Database error: error returned from database: (code: 1) no such table: tenants
+ERROR 2025-10-05 14:02:19,166 log Internal Server Error: /api/moderation/upload-policy/
+ERROR 2025-10-05 14:02:19,167 basehttp "POST /api/moderation/upload-policy/ HTTP/1.1" 500 119
+INFO 2025-10-05 14:02:27,172 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:02:27,177 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:02:27,184 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:02:27,190 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:02:59,509 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 14:03:03,765 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 14:03:03,790 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:03:03,794 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:03:03,812 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:03:03,836 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:03:21,124 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+WARNING 2025-10-05 14:03:23,900 log Unauthorized: /api/auth/login/
+WARNING 2025-10-05 14:03:23,900 basehttp "POST /api/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-10-05 14:03:23,904 log Bad Request: /api/auth/refresh/
+WARNING 2025-10-05 14:03:23,904 basehttp "POST /api/auth/refresh/ HTTP/1.1" 400 43
+INFO 2025-10-05 14:03:28,695 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 14:03:28,721 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:03:28,726 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:03:28,740 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:03:28,768 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:04:33,152 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 14:05:23,969 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 14:05:25,515 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:05:28,124 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:05:29,619 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:05:30,030 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 14:05:32,115 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 14:05:32,448 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 16:55:07,702 autoreload Watching for file changes with StatReloader
+INFO 2025-10-05 16:55:28,540 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-10-05 16:55:28,798 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 16:55:30,655 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-05 16:55:30,663 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 16:55:31,640 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 16:55:31,646 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 16:55:32,977 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 16:55:33,456 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 16:55:34,097 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 17:04:00,834 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 52
+INFO 2025-10-05 17:04:00,838 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 473
+INFO 2025-10-05 17:04:43,517 basehttp "OPTIONS /api/moderation/upload-policy/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:04:43,562 views User admin uploading 1 policy files
+INFO 2025-10-05 17:04:43,581 views Saved policy file: Hate speech not allowed.pdf
+INFO 2025-10-05 17:04:43,581 policy_store Building/updating policy store with 1 files
+DEBUG 2025-10-05 17:04:43,664 policy_store Loaded /home/vasu/repos/sem5project/media/policies/Hate_speech_not_allowed_D1mlcNB.pdf
+INFO 2025-10-05 17:04:43,665 policy_store Split into 1 chunks
+INFO 2025-10-05 17:04:46,786 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 17:04:46,787 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 17:04:51,659 policy_store Updating existing policy store
+INFO 2025-10-05 17:04:52,271 posthog Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO 2025-10-05 17:04:53,306 policy_store Policy store updated successfully
+INFO 2025-10-05 17:04:53,306 views Policy store updated successfully
+INFO 2025-10-05 17:04:53,307 basehttp "POST /api/moderation/upload-policy/ HTTP/1.1" 201 357
+INFO 2025-10-05 17:04:53,358 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 257
+INFO 2025-10-05 17:05:07,840 basehttp "OPTIONS /api/moderation/moderate/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:05:07,845 views User admin moderating file: Vasu Sharma CV.pdf
+INFO 2025-10-05 17:05:07,846 SentenceTransformer Use pytorch device_name: cuda:0
+INFO 2025-10-05 17:05:07,846 SentenceTransformer Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+INFO 2025-10-05 17:05:11,376 policy_store Loading existing policy store
+INFO 2025-10-05 17:05:11,379 moderation_engine Starting moderation for: Vasu Sharma CV.pdf
+INFO 2025-10-05 17:05:11,379 moderation_engine Loading PDF: Vasu Sharma CV.pdf
+INFO 2025-10-05 17:05:11,401 moderation_engine Split Vasu Sharma CV.pdf into 2 chunks
+INFO 2025-10-05 17:05:11,402 moderation_engine Processing 2 chunks for moderation
+INFO 2025-10-05 17:05:11,402 llm Initializing RetrievalQA chain with k=3
+INFO 2025-10-05 17:05:11,549 llm RetrievalQA moderation chain initialized successfully
+DEBUG 2025-10-05 17:05:11,549 moderation_engine Moderating chunk 0/2: len=991
+INFO 2025-10-05 17:05:12,189 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG 2025-10-05 17:05:12,202 moderation_engine Chunk 0: OK
+DEBUG 2025-10-05 17:05:12,203 moderation_engine Moderating chunk 1/2: len=572
+INFO 2025-10-05 17:05:12,495 _client HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG 2025-10-05 17:05:12,496 moderation_engine Chunk 1: OK
+INFO 2025-10-05 17:05:12,496 moderation_engine Moderation complete for Vasu Sharma CV.pdf: verdict=clean, violations=0, reviews=0, allowed=2/2
+INFO 2025-10-05 17:05:12,524 views Moderation complete for Vasu Sharma CV.pdf: verdict=clean
+INFO 2025-10-05 17:05:12,527 basehttp "POST /api/moderation/moderate/ HTTP/1.1" 200 277
+INFO 2025-10-05 17:05:12,578 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:05:27,332 basehttp "OPTIONS /api/moderation/clear-policies/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:05:27,357 policy_store Clearing policy store
+INFO 2025-10-05 17:05:27,360 policy_store Policy store directory removed
+INFO 2025-10-05 17:05:27,362 policy_store Policy store cleared successfully
+INFO 2025-10-05 17:05:27,362 views User admin cleared 1 policies and reset policy store
+INFO 2025-10-05 17:05:27,363 basehttp "POST /api/moderation/clear-policies/ HTTP/1.1" 200 67
+INFO 2025-10-05 17:05:27,413 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:07:43,144 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-10-05 17:07:43,167 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-05 17:07:47,870 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-05 17:07:47,909 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-05 17:07:47,915 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:07:47,925 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 694
+INFO 2025-10-05 17:07:47,954 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
