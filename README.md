@@ -24,7 +24,7 @@ A Django-based content moderation system with JWT authentication that checks upl
 
 - Python 3.8+
 - pip
-- Groq API Key ([Get one here](https://console.groq.com))
+- Groq API Key
 
 ## Installation & Setup
 
