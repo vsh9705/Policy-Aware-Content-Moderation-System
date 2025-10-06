@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Shield, Mail, Lock, User } from 'lucide-react';
+import { Shield, Mail, Lock, User, CheckCircle, AlertCircle } from 'lucide-react';
+import { authStyles as styles } from '../styles/auth.styles';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -63,224 +64,169 @@ const AuthPage = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.formCard}>
-        <div style={styles.header}>
-          <Shield size={48} style={styles.icon} />
-          <h1 style={styles.title}>Content Moderation System</h1>
-          <p style={styles.subtitle}>
-            {isLogin ? 'Sign in to your account' : 'Create a new account'}
+      {/* Left Panel - Branding */}
+      <div style={styles.leftPanel}>
+        <div style={styles.leftPanelOverlay}></div>
+        <div style={styles.brandSection}>
+          <div style={styles.logoIcon}>
+            <Shield size={40} color="white" />
+          </div>
+          <h1 style={styles.brandTitle}>Content Moderation AI</h1>
+          <p style={styles.brandSubtitle}>
+            Enterprise-grade content moderation powered by advanced AI and policy automation
           </p>
+          
+          <div style={styles.featureList}>
+            <div style={styles.featureItem}>
+              <div style={styles.featureIcon}>
+                <CheckCircle size={16} />
+              </div>
+              <div style={styles.featureText}>
+                Automated policy compliance checking with AI-powered analysis
+              </div>
+            </div>
+            <div style={styles.featureItem}>
+              <div style={styles.featureIcon}>
+                <CheckCircle size={16} />
+              </div>
+              <div style={styles.featureText}>
+                Real-time violation detection and review management
+              </div>
+            </div>
+            <div style={styles.featureItem}>
+              <div style={styles.featureIcon}>
+                <CheckCircle size={16} />
+              </div>
+              <div style={styles.featureText}>
+                Comprehensive audit trails and detailed reporting
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        {error && (
-          <div style={styles.error}>
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              <User size={16} />
-              <span>Username</span>
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              style={styles.input}
-              placeholder="Enter your username"
-            />
+      {/* Right Panel - Form */}
+      <div style={styles.rightPanel}>
+        <div style={styles.formContainer}>
+          <div style={styles.formHeader}>
+            <h2 style={styles.formTitle}>
+              {isLogin ? 'Welcome back' : 'Create your account'}
+            </h2>
+            <p style={styles.formSubtitle}>
+              {isLogin 
+                ? 'Enter your credentials to access your dashboard' 
+                : 'Get started with your free account today'}
+            </p>
           </div>
 
-          {!isLogin && (
-            <div style={styles.inputGroup}>
-              <label style={styles.label}>
-                <Mail size={16} />
-                <span>Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                style={styles.input}
-                placeholder="Enter your email"
-              />
+          {error && (
+            <div style={styles.alert}>
+              <AlertCircle size={20} />
+              <span>{error}</span>
             </div>
           )}
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>
-              <Lock size={16} />
-              <span>Password</span>
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              style={styles.input}
-              placeholder="Enter your password"
-            />
-          </div>
-
-          {!isLogin && (
-            <div style={styles.inputGroup}>
-              <label style={styles.label}>
-                <Lock size={16} />
-                <span>Confirm Password</span>
-              </label>
-              <input
-                type="password"
-                name="password2"
-                value={formData.password2}
-                onChange={handleChange}
-                required
-                style={styles.input}
-                placeholder="Confirm your password"
-              />
+          <form onSubmit={handleSubmit} style={styles.form}>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Username</label>
+              <div style={styles.inputWrapper}>
+                <User size={18} style={styles.inputIcon} />
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                  style={styles.input}
+                  placeholder="Enter your username"
+                />
+              </div>
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              ...styles.submitBtn,
-              opacity: loading ? 0.7 : 1,
-              cursor: loading ? 'not-allowed' : 'pointer',
-            }}
-          >
-            {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Sign Up')}
-          </button>
-        </form>
+            {!isLogin && (
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Email address</label>
+                <div style={styles.inputWrapper}>
+                  <Mail size={18} style={styles.inputIcon} />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    style={styles.input}
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
+            )}
 
-        <div style={styles.toggleSection}>
-          <p style={styles.toggleText}>
-            {isLogin ? "Don't have an account?" : 'Already have an account?'}
-          </p>
-          <button
-            onClick={() => {
-              setIsLogin(!isLogin);
-              setError('');
-              setFormData({ username: '', email: '', password: '', password2: '' });
-            }}
-            style={styles.toggleBtn}
-          >
-            {isLogin ? 'Sign Up' : 'Sign In'}
-          </button>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Password</label>
+              <div style={styles.inputWrapper}>
+                <Lock size={18} style={styles.inputIcon} />
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  style={styles.input}
+                  placeholder="Enter your password"
+                />
+              </div>
+            </div>
+
+            {!isLogin && (
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Confirm password</label>
+                <div style={styles.inputWrapper}>
+                  <Lock size={18} style={styles.inputIcon} />
+                  <input
+                    type="password"
+                    name="password2"
+                    value={formData.password2}
+                    onChange={handleChange}
+                    required
+                    style={styles.input}
+                    placeholder="Confirm your password"
+                  />
+                </div>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                ...styles.submitButton,
+                opacity: loading ? 0.7 : 1,
+                cursor: loading ? 'not-allowed' : 'pointer',
+              }}
+            >
+              {loading ? 'Please wait...' : (isLogin ? 'Sign in' : 'Create account')}
+            </button>
+          </form>
+
+          <div style={styles.toggleSection}>
+            <span style={styles.toggleText}>
+              {isLogin ? "Don't have an account?" : 'Already have an account?'}
+            </span>
+            <button
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError('');
+                setFormData({ username: '', email: '', password: '', password2: '' });
+              }}
+              style={styles.toggleButton}
+            >
+              {isLogin ? 'Sign up' : 'Sign in'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    padding: '1rem',
-  },
-  formCard: {
-    backgroundColor: 'white',
-    borderRadius: '0.5rem',
-    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-    padding: '2rem',
-    width: '100%',
-    maxWidth: '450px',
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: '2rem',
-  },
-  icon: {
-    color: '#667eea',
-    margin: '0 auto 1rem',
-  },
-  title: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
-    margin: '0 0 0.5rem 0',
-  },
-  subtitle: {
-    color: '#6b7280',
-    fontSize: '0.875rem',
-    margin: 0,
-  },
-  error: {
-    backgroundColor: '#fee2e2',
-    color: '#991b1b',
-    padding: '0.75rem',
-    borderRadius: '0.375rem',
-    marginBottom: '1rem',
-    fontSize: '0.875rem',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  inputGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.5rem',
-  },
-  label: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    fontSize: '0.875rem',
-    fontWeight: '500',
-    color: '#374151',
-  },
-  input: {
-    padding: '0.625rem',
-    border: '1px solid #d1d5db',
-    borderRadius: '0.375rem',
-    fontSize: '1rem',
-    outline: 'none',
-    transition: 'border-color 0.2s',
-  },
-  submitBtn: {
-    backgroundColor: '#667eea',
-    color: 'white',
-    padding: '0.75rem',
-    border: 'none',
-    borderRadius: '0.375rem',
-    fontSize: '1rem',
-    fontWeight: '600',
-    marginTop: '0.5rem',
-    transition: 'background-color 0.2s',
-  },
-  toggleSection: {
-    marginTop: '1.5rem',
-    textAlign: 'center',
-    paddingTop: '1.5rem',
-    borderTop: '1px solid #e5e7eb',
-  },
-  toggleText: {
-    color: '#6b7280',
-    fontSize: '0.875rem',
-    margin: '0 0 0.5rem 0',
-  },
-  toggleBtn: {
-    color: '#667eea',
-    backgroundColor: 'transparent',
-    border: 'none',
-    fontSize: '0.875rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    textDecoration: 'underline',
-  },
 };
 
 export default AuthPage;

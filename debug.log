@@ -1634,3 +1634,24 @@ INFO 2025-10-06 19:09:45,118 basehttp "OPTIONS /api/moderation/history/11/verdic
 INFO 2025-10-06 19:09:45,135 views User admin set final verdict to approved for moderation 11
 INFO 2025-10-06 19:09:45,136 basehttp "POST /api/moderation/history/11/verdict/ HTTP/1.1" 200 75
 INFO 2025-10-06 19:09:45,189 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3022
+INFO 2025-10-06 19:20:18,908 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-06 19:20:23,847 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-06 19:20:23,880 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 469
+INFO 2025-10-06 19:20:23,887 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3022
+INFO 2025-10-06 19:20:23,899 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3022
+INFO 2025-10-06 19:20:23,926 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 469
+INFO 2025-10-06 19:21:18,550 basehttp "OPTIONS /api/moderation/history/7/ HTTP/1.1" 200 0
+INFO 2025-10-06 19:21:18,557 basehttp "GET /api/moderation/history/7/ HTTP/1.1" 200 549
+INFO 2025-10-06 19:23:41,360 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 31
+INFO 2025-10-06 19:24:47,002 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-06 19:24:47,036 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 469
+INFO 2025-10-06 19:24:47,042 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3022
+INFO 2025-10-06 19:24:47,055 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3022
+INFO 2025-10-06 19:24:47,084 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 469
+INFO 2025-10-06 19:25:39,250 basehttp "GET /api/moderation/history/11/ HTTP/1.1" 200 469
+INFO 2025-10-06 19:25:45,407 basehttp "OPTIONS /api/moderation/history/8/ HTTP/1.1" 200 0
+INFO 2025-10-06 19:25:45,420 basehttp "GET /api/moderation/history/8/ HTTP/1.1" 200 1167
+INFO 2025-10-06 19:34:42,964 basehttp "OPTIONS /api/moderation/history/8/verdict/ HTTP/1.1" 200 0
+INFO 2025-10-06 19:34:42,983 views User admin set final verdict to rejected for moderation 8
+INFO 2025-10-06 19:34:42,984 basehttp "POST /api/moderation/history/8/verdict/ HTTP/1.1" 200 75
+INFO 2025-10-06 19:34:43,038 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 3048
