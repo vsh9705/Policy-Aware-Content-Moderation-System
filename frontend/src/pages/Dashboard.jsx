@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { policyAPI, moderationAPI } from '../services/api';
-import { Upload, FileText, History, AlertCircle, CheckCircle, Clock, Shield, Trash2 } from 'lucide-react';
+import { 
+  Upload, FileText, History, AlertCircle, CheckCircle, Clock, Shield, 
+  Trash2, LayoutDashboard, Settings, FileCheck, X, Search, Filter,
+  ChevronDown, Download, Eye, MoreVertical
+} from 'lucide-react';
+import { dashboardStyles as styles } from '../styles/dashboard.styles';
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('main');
+  const [activeView, setActiveView] = useState('overview');
   const [policyFiles, setPolicyFiles] = useState([]);
   const [moderateFile, setModerateFile] = useState(null);
   const [policies, setPolicies] = useState([]);
@@ -15,11 +20,15 @@ const Dashboard = () => {
   const [viewingFile, setViewingFile] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [moderationResult, setModerationResult] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterStatus, setFilterStatus] = useState('all');
   const [stats, setStats] = useState({
     totalPolicies: 0,
     totalViolations: 0,
     totalReviews: 0,
     totalClean: 0,
+    totalSubmissions: 0,
+    pendingReview: 0,
   });
 
   useEffect(() => {
@@ -31,6 +40,7 @@ const Dashboard = () => {
     if (history.length > 0) {
       const violations = history.filter(h => h.verdict === 'violation_found').length;
       const clean = history.filter(h => h.verdict === 'clean').length;
+      const pending = history.filter(h => h.final_verdict === 'pending').length;
       const reviews = history.reduce((acc, h) => acc + h.review_chunks, 0);
       
       setStats({
@@ -38,6 +48,8 @@ const Dashboard = () => {
         totalViolations: violations,
         totalReviews: reviews,
         totalClean: clean,
+        totalSubmissions: history.length,
+        pendingReview: pending,
       });
     }
   }, [history, policies]);
@@ -75,7 +87,7 @@ const Dashboard = () => {
     setPolicyLoading(true);
     try {
       await policyAPI.uploadPolicies(policyFiles);
-      showMessage('success', 'Policies uploaded successfully!');
+      showMessage('success', 'Policies uploaded successfully');
       setPolicyFiles([]);
       e.target.reset();
       loadPolicies();
@@ -98,10 +110,11 @@ const Dashboard = () => {
     try {
       const response = await moderationAPI.moderateFile(moderateFile);
       setModerationResult(response.data);
-      showMessage('success', 'File moderated successfully!');
+      showMessage('success', 'Content moderated successfully');
       setModerateFile(null);
       e.target.reset();
       loadHistory();
+      setActiveView('submissions');
     } catch (error) {
       showMessage('error', error.response?.data?.error || 'Failed to moderate file');
     } finally {
@@ -110,12 +123,12 @@ const Dashboard = () => {
   };
 
   const handleClearPolicies = async () => {
-    if (!window.confirm('Are you sure you want to clear all policies?')) return;
+    if (!window.confirm('This will remove all policies from the system. Continue?')) return;
 
     setPolicyLoading(true);
     try {
       await policyAPI.clearPolicies();
-      showMessage('success', 'All policies cleared!');
+      showMessage('success', 'All policies cleared');
       setPolicies([]);
       loadPolicies();
     } catch (error) {
@@ -128,7 +141,7 @@ const Dashboard = () => {
   const handleFinalVerdict = async (resultId, verdict) => {
     try {
       await moderationAPI.updateFinalVerdict(resultId, verdict);
-      showMessage('success', `File marked as ${verdict === 'approved' ? 'Clean' : 'Violation'}`);
+      showMessage('success', `Verdict updated: ${verdict === 'approved' ? 'Approved' : 'Rejected'}`);
       loadHistory();
       if (selectedResult && selectedResult.id === resultId) {
         setSelectedResult(null);
@@ -147,798 +160,643 @@ const Dashboard = () => {
       setSelectedResult(response.data);
       setViewingFile(true);
     } catch (error) {
-      showMessage('error', 'Failed to load result details');
+      showMessage('error', 'Failed to load details');
     }
   };
 
+  const filteredHistory = history.filter(item => {
+    const matchesSearch = item.filename.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filterStatus === 'all' || 
+      (filterStatus === 'pending' && item.final_verdict === 'pending') ||
+      (filterStatus === 'approved' && item.final_verdict === 'approved') ||
+      (filterStatus === 'rejected' && item.final_verdict === 'rejected');
+    return matchesSearch && matchesFilter;
+  });
+
   return (
     <div style={styles.container}>
-      <div style={styles.navbarWrapper}>
-        <Navbar />
-      </div>
+      <Navbar />
       
-      <div style={styles.main}>
-        {message.text && (
-          <div style={{
-            ...styles.message,
-            backgroundColor: message.type === 'success' ? '#d1fae5' : '#fee2e2',
-            color: message.type === 'success' ? '#065f46' : '#991b1b',
-          }}>
-            {message.text}
-          </div>
-        )}
+      <div style={styles.layout}>
+        {/* Sidebar */}
+        <aside style={styles.sidebar}>
+          <nav style={styles.sidebarNav}>
+            <button
+              onClick={() => setActiveView('overview')}
+              style={{...styles.navItem, ...(activeView === 'overview' ? styles.navItemActive : {})}}
+            >
+              <LayoutDashboard size={20} />
+              <span>Overview</span>
+            </button>
+            <button
+              onClick={() => setActiveView('moderate')}
+              style={{...styles.navItem, ...(activeView === 'moderate' ? styles.navItemActive : {})}}
+            >
+              <FileCheck size={20} />
+              <span>Moderate Content</span>
+            </button>
+            <button
+              onClick={() => setActiveView('submissions')}
+              style={{...styles.navItem, ...(activeView === 'submissions' ? styles.navItemActive : {})}}
+            >
+              <History size={20} />
+              <span>Submissions</span>
+              {stats.pendingReview > 0 && (
+                <span style={styles.badge}>{stats.pendingReview}</span>
+              )}
+            </button>
+            <button
+              onClick={() => setActiveView('policies')}
+              style={{...styles.navItem, ...(activeView === 'policies' ? styles.navItemActive : {})}}
+            >
+              <Shield size={20} />
+              <span>Policies</span>
+            </button>
+          </nav>
+        </aside>
 
-        {activeTab === 'main' && (
-          <>
-            {/* Stats Cards */}
-            <div style={styles.statsGrid}>
-              <div style={{...styles.statCard, background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)'}}>
-                <div style={styles.statIcon}><CheckCircle size={32} /></div>
-                <div style={styles.statContent}>
-                  <div style={styles.statValue}>{stats.totalClean}</div>
-                  <div style={styles.statLabel}>Clean Files</div>
+        {/* Main Content */}
+        <main style={styles.main}>
+          {message.text && (
+            <div style={{
+              ...styles.alert,
+              backgroundColor: message.type === 'success' ? '#ecfdf5' : '#fef2f2',
+              borderColor: message.type === 'success' ? '#10b981' : '#ef4444',
+              color: message.type === 'success' ? '#065f46' : '#991b1b',
+            }}>
+              {message.type === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+              <span>{message.text}</span>
+              <button onClick={() => setMessage({ type: '', text: '' })} style={styles.alertClose}>
+                <X size={16} />
+              </button>
+            </div>
+          )}
+
+          {/* Overview */}
+          {activeView === 'overview' && (
+            <div>
+              <div style={styles.pageHeader}>
+                <div>
+                  <h1 style={styles.pageTitle}>Dashboard Overview</h1>
+                  <p style={styles.pageSubtitle}>Monitor your content moderation metrics and activity</p>
                 </div>
               </div>
-              
-              <div style={{...styles.statCard, background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'}}>
-                <div style={styles.statIcon}><AlertCircle size={32} /></div>
-                <div style={styles.statContent}>
-                  <div style={styles.statValue}>{stats.totalViolations}</div>
-                  <div style={styles.statLabel}>Violations Found</div>
+
+              <div style={styles.statsGrid}>
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Total Submissions</span>
+                    <LayoutDashboard size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.totalSubmissions}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#10b981'}}>Active</span>
+                  </div>
+                </div>
+
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Approved</span>
+                    <CheckCircle size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.totalClean}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#10b981'}}>Clean files</span>
+                  </div>
+                </div>
+
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Violations</span>
+                    <AlertCircle size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.totalViolations}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#ef4444'}}>Flagged content</span>
+                  </div>
+                </div>
+
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Pending Review</span>
+                    <Clock size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.pendingReview}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#f59e0b'}}>Awaiting decision</span>
+                  </div>
+                </div>
+
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Active Policies</span>
+                    <Shield size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.totalPolicies}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#8b5cf6'}}>In use</span>
+                  </div>
+                </div>
+
+                <div style={styles.statCard}>
+                  <div style={styles.statCardHeader}>
+                    <span style={styles.statCardTitle}>Review Items</span>
+                    <FileText size={20} style={{color: '#6b7280'}} />
+                  </div>
+                  <div style={styles.statCardValue}>{stats.totalReviews}</div>
+                  <div style={styles.statCardFooter}>
+                    <span style={{color: '#f59e0b'}}>Chunks flagged</span>
+                  </div>
                 </div>
               </div>
-              
-              <div style={{...styles.statCard, background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'}}>
-                <div style={styles.statIcon}><Clock size={32} /></div>
-                <div style={styles.statContent}>
-                  <div style={styles.statValue}>{stats.totalReviews}</div>
-                  <div style={styles.statLabel}>Needs Review</div>
-                </div>
-              </div>
-              
-              <div style={{...styles.statCard, background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'}}>
-                <div style={styles.statIcon}><Shield size={32} /></div>
-                <div style={styles.statContent}>
-                  <div style={styles.statValue}>{stats.totalPolicies}</div>
-                  <div style={styles.statLabel}>Active Policies</div>
+
+              {/* Quick Actions */}
+              <div style={styles.section}>
+                <h2 style={styles.sectionTitle}>Quick Actions</h2>
+                <div style={styles.quickActions}>
+                  <button onClick={() => setActiveView('moderate')} style={styles.quickActionCard}>
+                    <FileCheck size={32} style={{color: '#8b5cf6'}} />
+                    <h3 style={styles.quickActionTitle}>Moderate Content</h3>
+                    <p style={styles.quickActionDesc}>Submit new content for policy review</p>
+                  </button>
+                  <button onClick={() => setActiveView('policies')} style={styles.quickActionCard}>
+                    <Shield size={32} style={{color: '#8b5cf6'}} />
+                    <h3 style={styles.quickActionTitle}>Manage Policies</h3>
+                    <p style={styles.quickActionDesc}>Upload and configure policy documents</p>
+                  </button>
+                  <button onClick={() => setActiveView('submissions')} style={styles.quickActionCard}>
+                    <History size={32} style={{color: '#8b5cf6'}} />
+                    <h3 style={styles.quickActionTitle}>View Submissions</h3>
+                    <p style={styles.quickActionDesc}>Review moderation history and results</p>
+                  </button>
                 </div>
               </div>
             </div>
+          )}
 
-            {/* Main Content Grid */}
-            <div style={styles.contentGrid}>
-              {/* Policy Upload Section */}
-              <div style={styles.card}>
-                <div style={styles.cardHeader}>
-                  <FileText size={24} style={{color: '#8b5cf6'}} />
-                  <h2 style={styles.cardTitle}>Policy Document</h2>
+          {/* Moderate Content */}
+          {activeView === 'moderate' && (
+            <div>
+              <div style={styles.pageHeader}>
+                <div>
+                  <h1 style={styles.pageTitle}>Moderate Content</h1>
+                  <p style={styles.pageSubtitle}>Submit content for automated policy compliance review</p>
                 </div>
-                <p style={styles.cardSubtitle}>Upload your content moderation policy to use as the AI reference</p>
-                
-                <div style={styles.uploadArea}>
-                  {policies.length === 0 ? (
-                    <>
-                      <FileText size={64} style={{color: '#9ca3af', marginBottom: '1rem'}} />
-                      <p style={styles.emptyText}>No active policy uploaded</p>
-                    </>
-                  ) : (
-                    <>
-                      <Shield size={64} style={{color: '#8b5cf6', marginBottom: '1rem'}} />
-                      <p style={styles.emptyText}>{policies.length} policy file(s) active</p>
-                    </>
-                  )}
-                </div>
-
-                <form onSubmit={handlePolicyUpload}>
-                  <label style={styles.fileLabel}>
-                    <Upload size={16} />
-                    <span>Choose file</span>
-                    <input
-                      type="file"
-                      multiple
-                      accept=".pdf"
-                      onChange={(e) => setPolicyFiles(Array.from(e.target.files))}
-                      style={styles.hiddenInput}
-                    />
-                  </label>
-                  {policyFiles.length > 0 && (
-                    <p style={styles.fileCount}>{policyFiles.length} file(s) selected</p>
-                  )}
-                  <div style={styles.buttonGroup}>
-                    <button type="submit" disabled={policyLoading} style={styles.primaryButton}>
-                      Upload Policy
-                    </button>
-                    {policies.length > 0 && (
-                      <button 
-                        type="button" 
-                        onClick={handleClearPolicies} 
-                        style={styles.dangerButtonSmall}
-                        disabled={policyLoading}
-                      >
-                        <Trash2 size={16} />
-                        Clear All
-                      </button>
-                    )}
-                  </div>
-                </form>
               </div>
 
-              {/* Moderation Section */}
-              <div style={styles.card}>
-                <div style={styles.cardHeader}>
-                  <FileText size={24} style={{color: '#8b5cf6'}} />
-                  <h2 style={styles.cardTitle}>Submit Content for Review</h2>
-                </div>
-                <p style={styles.cardSubtitle}>Upload content to moderate against your policy</p>
-                
+              <div style={styles.contentCard}>
                 <form onSubmit={handleModeration}>
-                  <div style={styles.uploadAreaClickable}>
-                    <label style={styles.uploadLabel}>
-                      <Upload size={48} style={{color: '#9ca3af', marginBottom: '1rem'}} />
-                      <p style={styles.uploadText}>Click to upload content</p>
-                      <p style={styles.uploadHint}>PDF or DOC files only</p>
+                  <div style={styles.formGroup}>
+                    <label style={styles.formLabel}>Upload Document</label>
+                    <div style={styles.uploadZone}>
                       <input
                         type="file"
                         accept=".pdf"
                         onChange={(e) => setModerateFile(e.target.files[0])}
                         style={styles.hiddenInput}
+                        id="moderate-file"
                       />
-                    </label>
+                      <label htmlFor="moderate-file" style={styles.uploadZoneLabel}>
+                        <Upload size={48} style={{color: '#9ca3af'}} />
+                        <p style={styles.uploadZoneText}>
+                          {moderateFile ? moderateFile.name : 'Click to upload or drag and drop'}
+                        </p>
+                        <p style={styles.uploadZoneHint}>PDF files up to 10MB</p>
+                      </label>
+                    </div>
                   </div>
-                  {moderateFile && (
-                    <p style={styles.fileCount}>{moderateFile.name}</p>
-                  )}
-                  <button type="submit" disabled={moderationLoading} style={styles.primaryButton}>
+
+                  <button
+                    type="submit"
+                    disabled={moderationLoading || !moderateFile}
+                    style={{
+                      ...styles.primaryButton,
+                      opacity: moderationLoading || !moderateFile ? 0.5 : 1,
+                    }}
+                  >
                     {moderationLoading ? 'Analyzing...' : 'Submit for Moderation'}
                   </button>
                 </form>
-              </div>
-            </div>
 
-            {/* Moderation Results */}
-            {moderationResult && (
-              <div style={styles.resultsSection}>
-                <h2 style={styles.sectionTitle}>Moderation Results</h2>
-                <div style={styles.resultCard}>
-                  <div style={styles.resultHeader}>
-                    <div style={{
-                      ...styles.verdictBadge,
-                      backgroundColor: moderationResult.verdict === 'clean' ? '#d1fae5' : '#fee2e2',
-                      color: moderationResult.verdict === 'clean' ? '#065f46' : '#991b1b',
-                    }}>
-                      {moderationResult.verdict === 'clean' ? (
-                        <><CheckCircle size={20} /> Clean</>
-                      ) : (
-                        <><AlertCircle size={20} /> Violations Found</>
-                      )}
-                    </div>
-                    <span style={styles.filename}>{moderationResult.filename}</span>
-                  </div>
-
-                  <div style={styles.resultStats}>
-                    <div style={styles.resultStat}>
-                      <span style={styles.resultStatLabel}>Total Chunks</span>
-                      <span style={styles.resultStatValue}>{moderationResult.total_chunks}</span>
-                    </div>
-                    <div style={styles.resultStat}>
-                      <span style={styles.resultStatLabel}>Allowed</span>
-                      <span style={{...styles.resultStatValue, color: '#10b981'}}>{moderationResult.allowed_chunks}</span>
-                    </div>
-                    <div style={styles.resultStat}>
-                      <span style={styles.resultStatLabel}>Review</span>
-                      <span style={{...styles.resultStatValue, color: '#f59e0b'}}>{moderationResult.review_chunks}</span>
-                    </div>
-                    <div style={styles.resultStat}>
-                      <span style={styles.resultStatLabel}>Violations</span>
-                      <span style={{...styles.resultStatValue, color: '#ef4444'}}>{moderationResult.violation_chunks}</span>
-                    </div>
-                  </div>
-
-                  {moderationResult.violations && moderationResult.violations.length > 0 && (
-                    <div style={styles.violationsSection}>
-                      {moderationResult.violations.map((violation, idx) => (
-                        <div key={idx} style={styles.violationCard}>
-                          <div style={styles.violationHeader}>
-                            <span style={{
-                              ...styles.violationBadge,
-                              backgroundColor: violation.verdict === 'violation' ? '#fee2e2' : '#fef3c7',
-                              color: violation.verdict === 'violation' ? '#991b1b' : '#92400e',
-                            }}>
-                              {violation.verdict.toUpperCase()}
-                            </span>
-                          </div>
-                          <p style={styles.chunkText}>{violation.chunk_text}</p>
-                          <p style={styles.explanation}>{violation.explanation}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </>
-        )}
-
-        {activeTab === 'history' && (
-          <div>
-            <div style={styles.tabHeader}>
-              <History size={32} style={{color: '#8b5cf6'}} />
-              <h2 style={styles.tabTitle}>Moderation History</h2>
-            </div>
-            
-            {history.length === 0 ? (
-              <div style={styles.emptyState}>
-                <History size={64} style={{color: '#d1d5db'}} />
-                <p style={styles.emptyStateText}>No submissions yet</p>
-                <p style={styles.emptyStateHint}>Submit content to see moderation results</p>
-              </div>
-            ) : (
-              <div style={styles.historyGrid}>
-                {history.map((item) => (
-                  <div key={item.id} style={styles.historyCard}>
-                    <div style={styles.historyCardHeader}>
-                      <FileText size={20} style={{color: '#8b5cf6'}} />
-                      <span style={styles.historyFilename}>{item.filename}</span>
-                    </div>
-                    <div style={{
-                      ...styles.historyVerdict,
-                      backgroundColor: item.verdict === 'clean' ? '#d1fae5' : '#fee2e2',
-                      color: item.verdict === 'clean' ? '#065f46' : '#991b1b',
-                    }}>
-                      {item.verdict === 'clean' ? 'Clean' : 'Violations Found'}
-                    </div>
-                    {item.final_verdict !== 'pending' && (
+                {moderationResult && (
+                  <div style={styles.resultSection}>
+                    <div style={styles.resultHeader}>
+                      <h3 style={styles.resultTitle}>Moderation Complete</h3>
                       <div style={{
-                        ...styles.finalVerdictSmall,
-                        backgroundColor: item.final_verdict === 'approved' ? '#d1fae5' : '#fee2e2',
-                        color: item.final_verdict === 'approved' ? '#065f46' : '#991b1b',
+                        ...styles.statusBadge,
+                        backgroundColor: moderationResult.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
+                        color: moderationResult.verdict === 'clean' ? '#065f46' : '#991b1b',
                       }}>
-                        Final: {item.final_verdict === 'approved' ? 'Approved' : 'Rejected'}
+                        {moderationResult.verdict === 'clean' ? 'Clean' : 'Issues Found'}
+                      </div>
+                    </div>
+
+                    <div style={styles.resultGrid}>
+                      <div style={styles.resultMetric}>
+                        <span style={styles.resultMetricLabel}>Total Chunks</span>
+                        <span style={styles.resultMetricValue}>{moderationResult.total_chunks}</span>
+                      </div>
+                      <div style={styles.resultMetric}>
+                        <span style={styles.resultMetricLabel}>Allowed</span>
+                        <span style={{...styles.resultMetricValue, color: '#10b981'}}>{moderationResult.allowed_chunks}</span>
+                      </div>
+                      <div style={styles.resultMetric}>
+                        <span style={styles.resultMetricLabel}>Review</span>
+                        <span style={{...styles.resultMetricValue, color: '#f59e0b'}}>{moderationResult.review_chunks}</span>
+                      </div>
+                      <div style={styles.resultMetric}>
+                        <span style={styles.resultMetricLabel}>Violations</span>
+                        <span style={{...styles.resultMetricValue, color: '#ef4444'}}>{moderationResult.violation_chunks}</span>
+                      </div>
+                    </div>
+
+                    {moderationResult.violations && moderationResult.violations.length > 0 && (
+                      <div style={styles.violationsList}>
+                        <h4 style={styles.violationsListTitle}>Flagged Content</h4>
+                        {moderationResult.violations.slice(0, 3).map((violation, idx) => (
+                          <div key={idx} style={styles.violationItem}>
+                            <div style={styles.violationItemHeader}>
+                              <span style={{
+                                ...styles.violationBadge,
+                                backgroundColor: violation.verdict === 'violation' ? '#fef2f2' : '#fef3c7',
+                                color: violation.verdict === 'violation' ? '#991b1b' : '#92400e',
+                              }}>
+                                {violation.verdict.toUpperCase()}
+                              </span>
+                            </div>
+                            <p style={styles.violationText}>{violation.chunk_text.substring(0, 200)}...</p>
+                            <p style={styles.violationExplanation}>{violation.explanation}</p>
+                          </div>
+                        ))}
+                        {moderationResult.violations.length > 3 && (
+                          <p style={styles.moreViolations}>
+                            +{moderationResult.violations.length - 3} more issues
+                          </p>
+                        )}
                       </div>
                     )}
-                    <div style={styles.historyStats}>
-                      <div style={styles.historyStat}>
-                        <span style={styles.historyStatValue}>{item.total_chunks}</span>
-                        <span style={styles.historyStatLabel}>Total</span>
+
+                    {moderationResult.final_verdict === 'pending' && (
+                      <div style={styles.actionSection}>
+                        <h4 style={styles.actionSectionTitle}>Make Final Decision</h4>
+                        {moderationResult.file_url && (
+                          <a 
+                            href={moderationResult.file_url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={styles.viewFileLink}
+                          >
+                            <Eye size={18} />
+                            View Original File
+                          </a>
+                        )}
+                        <div style={styles.actionButtons}>
+                          <button
+                            onClick={() => handleFinalVerdict(moderationResult.id, 'approved')}
+                            style={styles.approveButton}
+                          >
+                            <CheckCircle size={20} />
+                            Approve
+                          </button>
+                          <button
+                            onClick={() => handleFinalVerdict(moderationResult.id, 'rejected')}
+                            style={styles.rejectButton}
+                          >
+                            <AlertCircle size={20} />
+                            Reject
+                          </button>
+                        </div>
                       </div>
-                      <div style={styles.historyStat}>
-                        <span style={{...styles.historyStatValue, color: '#10b981'}}>{item.allowed_chunks}</span>
-                        <span style={styles.historyStatLabel}>Allowed</span>
-                      </div>
-                      <div style={styles.historyStat}>
-                        <span style={{...styles.historyStatValue, color: '#f59e0b'}}>{item.review_chunks}</span>
-                        <span style={styles.historyStatLabel}>Review</span>
-                      </div>
-                      <div style={styles.historyStat}>
-                        <span style={{...styles.historyStatValue, color: '#ef4444'}}>{item.violation_chunks}</span>
-                        <span style={styles.historyStatLabel}>Violations</span>
-                      </div>
-                    </div>
-                    <div style={styles.historyDate}>
-                      <Clock size={14} />
-                      {new Date(item.created_at).toLocaleString()}
-                    </div>
-                    <button
-                      onClick={() => handleViewDetails(item.id)}
-                      style={styles.viewDetailsButton}
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Submissions */}
+          {activeView === 'submissions' && (
+            <div>
+              <div style={styles.pageHeader}>
+                <div>
+                  <h1 style={styles.pageTitle}>Submissions</h1>
+                  <p style={styles.pageSubtitle}>Review and manage all moderated content</p>
+                </div>
+              </div>
+
+              <div style={styles.contentCard}>
+                <div style={styles.tableHeader}>
+                  <div style={styles.searchBar}>
+                    <Search size={20} style={{color: '#9ca3af'}} />
+                    <input
+                      type="text"
+                      placeholder="Search by filename..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      style={styles.searchInput}
+                    />
+                  </div>
+                  <div style={styles.filterGroup}>
+                    <Filter size={16} style={{color: '#6b7280'}} />
+                    <select
+                      value={filterStatus}
+                      onChange={(e) => setFilterStatus(e.target.value)}
+                      style={styles.filterSelect}
                     >
-                      View Details & Make Decision
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Floating Action Button */}
-        <button
-          onClick={() => setActiveTab(activeTab === 'main' ? 'history' : 'main')}
-          style={styles.fab}
-        >
-          {activeTab === 'main' ? <History size={24} /> : <Shield size={24} />}
-        </button>
-
-        {/* Detail View Modal */}
-        {viewingFile && selectedResult && (
-          <div style={styles.modal} onClick={() => setViewingFile(false)}>
-            <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-              <div style={styles.modalHeader}>
-                <h2 style={styles.modalTitle}>{selectedResult.filename}</h2>
-                <button onClick={() => setViewingFile(false)} style={styles.closeButton}>×</button>
-              </div>
-              
-              <div style={styles.modalBody}>
-                <div style={styles.resultHeader}>
-                  <div style={{
-                    ...styles.verdictBadge,
-                    backgroundColor: selectedResult.verdict === 'clean' ? '#d1fae5' : '#fee2e2',
-                    color: selectedResult.verdict === 'clean' ? '#065f46' : '#991b1b',
-                  }}>
-                    {selectedResult.verdict === 'clean' ? (
-                      <><CheckCircle size={20} /> Clean</>
-                    ) : (
-                      <><AlertCircle size={20} /> Violations Found</>
-                    )}
+                      <option value="all">All Status</option>
+                      <option value="pending">Pending Review</option>
+                      <option value="approved">Approved</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
                   </div>
                 </div>
 
-                <div style={styles.resultStats}>
-                  <div style={styles.resultStat}>
-                    <span style={styles.resultStatLabel}>Total</span>
-                    <span style={styles.resultStatValue}>{selectedResult.total_chunks}</span>
+                {filteredHistory.length === 0 ? (
+                  <div style={styles.emptyState}>
+                    <History size={64} style={{color: '#d1d5db'}} />
+                    <p style={styles.emptyStateText}>No submissions found</p>
+                    <p style={styles.emptyStateHint}>
+                      {searchQuery || filterStatus !== 'all' 
+                        ? 'Try adjusting your search or filter'
+                        : 'Submit content to see moderation results here'}
+                    </p>
                   </div>
-                  <div style={styles.resultStat}>
-                    <span style={styles.resultStatLabel}>Allowed</span>
-                    <span style={{...styles.resultStatValue, color: '#10b981'}}>{selectedResult.allowed_chunks}</span>
-                  </div>
-                  <div style={styles.resultStat}>
-                    <span style={styles.resultStatLabel}>Review</span>
-                    <span style={{...styles.resultStatValue, color: '#f59e0b'}}>{selectedResult.review_chunks}</span>
-                  </div>
-                  <div style={styles.resultStat}>
-                    <span style={styles.resultStatLabel}>Violations</span>
-                    <span style={{...styles.resultStatValue, color: '#ef4444'}}>{selectedResult.violation_chunks}</span>
-                  </div>
-                </div>
+                ) : (
+                  <table style={styles.table}>
+                    <thead>
+                      <tr style={styles.tableHeaderRow}>
+                        <th style={styles.tableHeaderCell}>Filename</th>
+                        <th style={styles.tableHeaderCell}>Status</th>
+                        <th style={styles.tableHeaderCell}>Decision</th>
+                        <th style={styles.tableHeaderCell}>Chunks</th>
+                        <th style={styles.tableHeaderCell}>Submitted</th>
+                        <th style={styles.tableHeaderCell}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredHistory.map((item) => (
+                        <tr key={item.id} style={styles.tableRow}>
+                          <td style={styles.tableCell}>
+                            <div style={styles.fileCell}>
+                              <FileText size={18} style={{color: '#8b5cf6'}} />
+                              <span style={styles.filename}>{item.filename}</span>
+                            </div>
+                          </td>
+                          <td style={styles.tableCell}>
+                            <span style={{
+                              ...styles.tableBadge,
+                              backgroundColor: item.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
+                              color: item.verdict === 'clean' ? '#065f46' : '#991b1b',
+                            }}>
+                              {item.verdict === 'clean' ? 'Clean' : 'Issues'}
+                            </span>
+                          </td>
+                          <td style={styles.tableCell}>
+                            <span style={{
+                              ...styles.tableBadge,
+                              backgroundColor: 
+                                item.final_verdict === 'approved' ? '#ecfdf5' :
+                                item.final_verdict === 'rejected' ? '#fef2f2' : '#fef3c7',
+                              color: 
+                                item.final_verdict === 'approved' ? '#065f46' :
+                                item.final_verdict === 'rejected' ? '#991b1b' : '#92400e',
+                            }}>
+                              {item.final_verdict === 'pending' ? 'Pending' :
+                               item.final_verdict === 'approved' ? 'Approved' : 'Rejected'}
+                            </span>
+                          </td>
+                          <td style={styles.tableCell}>
+                            <div style={styles.chunkMetrics}>
+                              <span style={{color: '#10b981'}}>{item.allowed_chunks}</span>
+                              <span style={{color: '#9ca3af'}}>/</span>
+                              <span style={{color: '#ef4444'}}>{item.violation_chunks}</span>
+                              <span style={{color: '#9ca3af'}}>/</span>
+                              <span style={{color: '#f59e0b'}}>{item.review_chunks}</span>
+                            </div>
+                          </td>
+                          <td style={styles.tableCell}>
+                            <span style={styles.dateText}>
+                              {new Date(item.created_at).toLocaleDateString()}
+                            </span>
+                          </td>
+                          <td style={styles.tableCell}>
+                            <button
+                              onClick={() => handleViewDetails(item.id)}
+                              style={styles.actionButton}
+                            >
+                              <Eye size={16} />
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          )}
 
-                {selectedResult.violations && selectedResult.violations.length > 0 && (
-                  <div style={styles.violationsSection}>
-                    <h4 style={styles.violationsTitle}>Issues Found</h4>
-                    {selectedResult.violations.map((violation, idx) => (
-                      <div key={idx} style={styles.violationCard}>
-                        <div style={styles.violationHeader}>
-                          <span style={{
-                            ...styles.violationBadge,
-                            backgroundColor: violation.verdict === 'violation' ? '#fee2e2' : '#fef3c7',
-                            color: violation.verdict === 'violation' ? '#991b1b' : '#92400e',
-                          }}>
-                            {violation.verdict.toUpperCase()}
+          {/* Policies */}
+          {activeView === 'policies' && (
+            <div>
+              <div style={styles.pageHeader}>
+                <div>
+                  <h1 style={styles.pageTitle}>Policy Management</h1>
+                  <p style={styles.pageSubtitle}>Upload and manage your content moderation policies</p>
+                </div>
+                {policies.length > 0 && (
+                  <button onClick={handleClearPolicies} style={styles.dangerButton} disabled={policyLoading}>
+                    <Trash2 size={18} />
+                    Clear All Policies
+                  </button>
+                )}
+              </div>
+
+              <div style={styles.contentCard}>
+                <form onSubmit={handlePolicyUpload}>
+                  <div style={styles.formGroup}>
+                    <label style={styles.formLabel}>Upload Policy Documents</label>
+                    <div style={styles.uploadZone}>
+                      <input
+                        type="file"
+                        multiple
+                        accept=".pdf"
+                        onChange={(e) => setPolicyFiles(Array.from(e.target.files))}
+                        style={styles.hiddenInput}
+                        id="policy-files"
+                      />
+                      <label htmlFor="policy-files" style={styles.uploadZoneLabel}>
+                        <Upload size={48} style={{color: '#9ca3af'}} />
+                        <p style={styles.uploadZoneText}>
+                          {policyFiles.length > 0 
+                            ? `${policyFiles.length} file(s) selected` 
+                            : 'Click to upload or drag and drop'}
+                        </p>
+                        <p style={styles.uploadZoneHint}>PDF files, multiple selection supported</p>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={policyLoading || policyFiles.length === 0}
+                    style={{
+                      ...styles.primaryButton,
+                      opacity: policyLoading || policyFiles.length === 0 ? 0.5 : 1,
+                    }}
+                  >
+                    {policyLoading ? 'Uploading...' : 'Upload Policies'}
+                  </button>
+                </form>
+
+                {policies.length > 0 && (
+                  <div style={styles.policyList}>
+                    <h3 style={styles.policyListTitle}>Active Policies ({policies.length})</h3>
+                    {policies.map((policy) => (
+                      <div key={policy.id} style={styles.policyItem}>
+                        <Shield size={20} style={{color: '#8b5cf6'}} />
+                        <div style={styles.policyDetails}>
+                          <span style={styles.policyName}>{policy.filename}</span>
+                          <span style={styles.policyMeta}>
+                            {(policy.file_size / 1024).toFixed(2)} KB • 
+                            Uploaded {new Date(policy.uploaded_at).toLocaleDateString()}
                           </span>
                         </div>
-                        <p style={styles.chunkText}>{violation.chunk_text}</p>
-                        <p style={styles.explanation}>{violation.explanation}</p>
                       </div>
                     ))}
                   </div>
                 )}
-
-                {selectedResult.final_verdict === 'pending' && (
-                  <div style={styles.finalVerdictSection}>
-                    <h4 style={styles.finalVerdictTitle}>Make Final Decision</h4>
-                    {selectedResult.file_url && (
-                      <a 
-                        href={selectedResult.file_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={styles.viewFileButton}
-                      >
-                        <FileText size={18} />
-                        View Original File
-                      </a>
-                    )}
-                    <div style={styles.verdictButtons}>
-                      <button
-                        onClick={() => {
-                          handleFinalVerdict(selectedResult.id, 'approved');
-                          setViewingFile(false);
-                        }}
-                        style={styles.approveButton}
-                      >
-                        <CheckCircle size={20} />
-                        Approve as Clean
-                      </button>
-                      <button
-                        onClick={() => {
-                          handleFinalVerdict(selectedResult.id, 'rejected');
-                          setViewingFile(false);
-                        }}
-                        style={styles.rejectButton}
-                      >
-                        <AlertCircle size={20} />
-                        Reject as Violation
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {selectedResult.final_verdict !== 'pending' && (
-                  <div style={styles.finalVerdictSection}>
-                    <div style={{
-                      ...styles.finalVerdictBadge,
-                      backgroundColor: selectedResult.final_verdict === 'approved' ? '#d1fae5' : '#fee2e2',
-                      color: selectedResult.final_verdict === 'approved' ? '#065f46' : '#991b1b',
-                    }}>
-                      {selectedResult.final_verdict === 'approved' ? (
-                        <><CheckCircle size={20} /> Final Decision: Approved</>
-                      ) : (
-                        <><AlertCircle size={20} /> Final Decision: Rejected</>
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </main>
       </div>
+
+      {/* Detail Modal */}
+      {viewingFile && selectedResult && (
+        <div style={styles.modal} onClick={() => setViewingFile(false)}>
+          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <div>
+                <h2 style={styles.modalTitle}>{selectedResult.filename}</h2>
+                <p style={styles.modalSubtitle}>Detailed moderation report</p>
+              </div>
+              <button onClick={() => setViewingFile(false)} style={styles.closeButton}>
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div style={styles.modalBody}>
+              <div style={styles.modalStats}>
+                <div style={styles.modalStatItem}>
+                  <span style={styles.modalStatLabel}>Status</span>
+                  <span style={{
+                    ...styles.tableBadge,
+                    backgroundColor: selectedResult.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
+                    color: selectedResult.verdict === 'clean' ? '#065f46' : '#991b1b',
+                  }}>
+                    {selectedResult.verdict === 'clean' ? 'Clean' : 'Issues Found'}
+                  </span>
+                </div>
+                <div style={styles.modalStatItem}>
+                  <span style={styles.modalStatLabel}>Total Chunks</span>
+                  <span style={styles.modalStatValue}>{selectedResult.total_chunks}</span>
+                </div>
+                <div style={styles.modalStatItem}>
+                  <span style={styles.modalStatLabel}>Allowed</span>
+                  <span style={{...styles.modalStatValue, color: '#10b981'}}>{selectedResult.allowed_chunks}</span>
+                </div>
+                <div style={styles.modalStatItem}>
+                  <span style={styles.modalStatLabel}>Review</span>
+                  <span style={{...styles.modalStatValue, color: '#f59e0b'}}>{selectedResult.review_chunks}</span>
+                </div>
+                <div style={styles.modalStatItem}>
+                  <span style={styles.modalStatLabel}>Violations</span>
+                  <span style={{...styles.modalStatValue, color: '#ef4444'}}>{selectedResult.violation_chunks}</span>
+                </div>
+              </div>
+
+              {selectedResult.violations && selectedResult.violations.length > 0 && (
+                <div style={styles.modalSection}>
+                  <h3 style={styles.modalSectionTitle}>Flagged Content</h3>
+                  {selectedResult.violations.map((violation, idx) => (
+                    <div key={idx} style={styles.modalViolationItem}>
+                      <div style={styles.modalViolationHeader}>
+                        <span style={{
+                          ...styles.violationBadge,
+                          backgroundColor: violation.verdict === 'violation' ? '#fef2f2' : '#fef3c7',
+                          color: violation.verdict === 'violation' ? '#991b1b' : '#92400e',
+                        }}>
+                          {violation.verdict.toUpperCase()}
+                        </span>
+                      </div>
+                      <p style={styles.modalViolationText}>{violation.chunk_text}</p>
+                      <p style={styles.modalViolationExplanation}>{violation.explanation}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {selectedResult.final_verdict === 'pending' && (
+                <div style={styles.modalActionSection}>
+                  <h3 style={styles.modalSectionTitle}>Make Final Decision</h3>
+                  {selectedResult.file_url && (
+                    <a 
+                      href={selectedResult.file_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={styles.viewFileLink}
+                    >
+                      <Eye size={18} />
+                      View Original File
+                    </a>
+                  )}
+                  <div style={styles.actionButtons}>
+                    <button
+                      onClick={() => {
+                        handleFinalVerdict(selectedResult.id, 'approved');
+                        setViewingFile(false);
+                      }}
+                      style={styles.approveButton}
+                    >
+                      <CheckCircle size={20} />
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleFinalVerdict(selectedResult.id, 'rejected');
+                        setViewingFile(false);
+                      }}
+                      style={styles.rejectButton}
+                    >
+                      <AlertCircle size={20} />
+                      Reject
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {selectedResult.final_verdict !== 'pending' && (
+                <div style={styles.modalFinalVerdict}>
+                  <span style={{
+                    ...styles.tableBadge,
+                    backgroundColor: selectedResult.final_verdict === 'approved' ? '#ecfdf5' : '#fef2f2',
+                    color: selectedResult.final_verdict === 'approved' ? '#065f46' : '#991b1b',
+                  }}>
+                    Final Decision: {selectedResult.final_verdict === 'approved' ? 'Approved' : 'Rejected'}
+                  </span>
+                  <span style={styles.dateText}>
+                    {new Date(selectedResult.reviewed_at).toLocaleString()}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    backgroundColor: '#f9fafb',
-  },
-  navbarWrapper: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-    backdropFilter: 'blur(10px)',
-    backgroundColor: 'rgba(31, 41, 55, 0.95)',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  },
-  main: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: '2rem 1rem',
-  },
-  message: {
-    padding: '1rem',
-    borderRadius: '0.75rem',
-    marginBottom: '1.5rem',
-    fontWeight: '500',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-  },
-  statsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '1.5rem',
-    marginBottom: '2rem',
-  },
-  statCard: {
-    padding: '1.5rem',
-    borderRadius: '1rem',
-    color: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  },
-  statIcon: {
-    opacity: 0.9,
-  },
-  statContent: {
-    flex: 1,
-  },
-  statValue: {
-    fontSize: '2.5rem',
-    fontWeight: '700',
-    lineHeight: 1,
-    marginBottom: '0.25rem',
-  },
-  statLabel: {
-    fontSize: '0.875rem',
-    opacity: 0.9,
-    fontWeight: '500',
-  },
-  contentGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-    gap: '1.5rem',
-    marginBottom: '2rem',
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    padding: '2rem',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-  },
-  cardHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    marginBottom: '0.5rem',
-  },
-  cardTitle: {
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    color: '#1f2937',
-    margin: 0,
-  },
-  cardSubtitle: {
-    fontSize: '0.875rem',
-    color: '#6b7280',
-    marginBottom: '1.5rem',
-  },
-  uploadArea: {
-    border: '2px dashed #e5e7eb',
-    borderRadius: '0.75rem',
-    padding: '3rem 1rem',
-    textAlign: 'center',
-    marginBottom: '1.5rem',
-    backgroundColor: '#fafafa',
-  },
-  uploadAreaClickable: {
-    border: '2px dashed #d1d5db',
-    borderRadius: '0.75rem',
-    padding: '3rem 1rem',
-    textAlign: 'center',
-    marginBottom: '1.5rem',
-    backgroundColor: '#fef6e7',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-  },
-  uploadLabel: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    cursor: 'pointer',
-  },
-  uploadText: {
-    fontSize: '1rem',
-    fontWeight: '500',
-    color: '#374151',
-    margin: '0.5rem 0 0.25rem 0',
-  },
-  uploadHint: {
-    fontSize: '0.875rem',
-    color: '#9ca3af',
-    margin: 0,
-  },
-  emptyText: {
-    color: '#9ca3af',
-    fontSize: '0.875rem',
-    margin: 0,
-  },
-  fileLabel: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '0.625rem 1.25rem',
-    backgroundColor: 'white',
-    border: '1px solid #d1d5db',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '0.875rem',
-    fontWeight: '500',
-    color: '#374151',
-    marginBottom: '1rem',
-    transition: 'all 0.2s',
-  },
-  hiddenInput: {
-    display: 'none',
-  },
-  fileCount: {
-    fontSize: '0.875rem',
-    color: '#6b7280',
-    marginBottom: '1rem',
-  },
-  buttonGroup: {
-    display: 'flex',
-    gap: '0.75rem',
-  },
-  primaryButton: {
-    flex: 1,
-    backgroundColor: '#8b5cf6',
-    color: 'white',
-    padding: '0.875rem 1.5rem',
-    border: 'none',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '1rem',
-    fontWeight: '600',
-    transition: 'all 0.2s',
-  },
-  dangerButtonSmall: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    backgroundColor: '#ef4444',
-    color: 'white',
-    padding: '0.875rem 1.25rem',
-    border: 'none',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '0.875rem',
-    fontWeight: '600',
-  },
-  resultsSection: {
-    marginTop: '2rem',
-  },
-  sectionTitle: {
-    fontSize: '1.5rem',
-    fontWeight: '600',
-    color: '#1f2937',
-    marginBottom: '1rem',
-  },
-  resultCard: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    padding: '2rem',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-  },
-  resultHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '1.5rem',
-  },
-  verdictBadge: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.5rem',
-    fontSize: '0.875rem',
-    fontWeight: '600',
-  },
-  filename: {
-    fontSize: '0.875rem',
-    color: '#6b7280',
-  },
-  resultStats: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '1rem',
-    marginBottom: '1.5rem',
-  },
-  resultStat: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '1rem',
-    backgroundColor: '#f9fafb',
-    borderRadius: '0.5rem',
-  },
-  resultStatLabel: {
-    fontSize: '0.75rem',
-    color: '#6b7280',
-    marginBottom: '0.25rem',
-  },
-  resultStatValue: {
-    fontSize: '1.5rem',
-    fontWeight: '600',
-    color: '#1f2937',
-  },
-  violationsSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  violationCard: {
-    padding: '1rem',
-    backgroundColor: '#fafafa',
-    borderRadius: '0.5rem',
-    border: '1px solid #e5e7eb',
-  },
-  violationHeader: {
-    marginBottom: '0.75rem',
-  },
-  violationBadge: {
-    display: 'inline-block',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '0.25rem',
-    fontSize: '0.75rem',
-    fontWeight: '600',
-  },
-  chunkText: {
-    fontSize: '0.875rem',
-    color: '#374151',
-    marginBottom: '0.5rem',
-    lineHeight: '1.5',
-  },
-  explanation: {
-    fontSize: '0.875rem',
-    color: '#6b7280',
-    fontStyle: 'italic',
-  },
-  tabHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    marginBottom: '2rem',
-  },
-  tabTitle: {
-    fontSize: '1.875rem',
-    fontWeight: '600',
-    color: '#1f2937',
-    margin: 0,
-  },
-  emptyState: {
-    textAlign: 'center',
-    padding: '4rem 2rem',
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-  },
-  emptyStateText: {
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    color: '#6b7280',
-    margin: '1rem 0 0.5rem 0',
-  },
-  emptyStateHint: {
-    fontSize: '0.875rem',
-    color: '#9ca3af',
-    margin: 0,
-  },
-  historyGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-    gap: '1.5rem',
-  },
-  historyCard: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    padding: '1.5rem',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-  },
-  historyCardHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    marginBottom: '1rem',
-  },
-  historyFilename: {
-    fontSize: '0.875rem',
-    fontWeight: '600',
-    color: '#1f2937',
-  },
-  historyVerdict: {
-    display: 'inline-block',
-    padding: '0.375rem 0.75rem',
-    borderRadius: '0.375rem',
-    fontSize: '0.75rem',
-    fontWeight: '600',
-    marginBottom: '1rem',
-  },
-  historyStats: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '0.5rem',
-    marginBottom: '1rem',
-  },
-  historyStat: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  historyStatValue: {
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    color: '#1f2937',
-  },
-  historyStatLabel: {
-    fontSize: '0.625rem',
-    color: '#9ca3af',
-    textTransform: 'uppercase',
-  },
-  historyDate: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.25rem',
-    fontSize: '0.75rem',
-    color: '#9ca3af',
-  },
-  fab: {
-    position: 'fixed',
-    bottom: '2rem',
-    right: '2rem',
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-    backgroundColor: '#8b5cf6',
-    color: 'white',
-    border: 'none',
-    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.4)',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'all 0.3s',
-  },
 };
 
 export default Dashboard;

@@ -24,7 +24,7 @@ MODERATION_PROMPT = PromptTemplate(
         "1. 'VIOLATION: <brief explanation of which policy it violates and why>'\n"
         "2. 'REVIEW: <brief explanation of why it needs human review>'\n"
         "3. 'OK: <brief reason why it is compliant>'\n\n"
-        "Be concise but explicit in your reasoning."
+        "Be concise but explicit in your reasoning. IMPORTANT - DONT JUST CLASSIFY ALL SLIGHTLY VIOLATING FILES INTO VIOLATION, PUT SOME INTO REVIEW AS WELL, ALL WHICH ARENT AN EXTREME VIOLATION MUST GO INTO REVIEW"
     )
 )
 
