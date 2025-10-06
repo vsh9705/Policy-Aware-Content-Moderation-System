@@ -1107,3 +1107,67 @@ INFO 2025-10-05 17:59:32,751 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 
 INFO 2025-10-05 17:59:33,536 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
 INFO 2025-10-05 17:59:33,885 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
 INFO 2025-10-05 17:59:34,308 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+WARNING 2025-10-05 18:30:31,151 log Not Found: /
+INFO 2025-10-06 07:37:16,465 autoreload Watching for file changes with StatReloader
+INFO 2025-10-06 07:37:39,509 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+WARNING 2025-10-06 07:37:39,520 log Unauthorized: /api/auth/login/
+WARNING 2025-10-06 07:37:39,521 basehttp "POST /api/auth/login/ HTTP/1.1" 401 172
+INFO 2025-10-06 07:37:39,567 basehttp "OPTIONS /api/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:39,651 basehttp "POST /api/auth/refresh/ HTTP/1.1" 200 489
+INFO 2025-10-06 07:37:39,939 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-06 07:37:40,014 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:40,020 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:40,025 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:40,027 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:40,033 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-06 07:37:40,044 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1205
+INFO 2025-10-06 07:37:40,081 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-06 07:37:40,098 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1205
+INFO 2025-10-06 07:37:43,803 basehttp "OPTIONS /api/moderation/history/4/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:43,808 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:37:45,144 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:37:45,410 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:37:45,829 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:37:47,572 basehttp "OPTIONS /api/moderation/history/5/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:37:47,578 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:37:48,310 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:37:52,369 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:37:59,757 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:38:00,157 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:38:00,681 basehttp "OPTIONS /api/moderation/history/3/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:38:00,686 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-06 07:38:01,546 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-06 07:38:02,392 basehttp "OPTIONS /api/moderation/history/2/ HTTP/1.1" 200 0
+INFO 2025-10-06 07:38:02,397 basehttp "GET /api/moderation/history/2/ HTTP/1.1" 200 855
+INFO 2025-10-06 07:38:06,358 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:38:18,388 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:38:18,833 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:38:19,238 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 07:38:28,299 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 07:38:29,975 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 09:16:13,796 autoreload Watching for file changes with StatReloader
+INFO 2025-10-06 09:16:36,690 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+WARNING 2025-10-06 09:16:36,705 log Unauthorized: /api/auth/login/
+WARNING 2025-10-06 09:16:36,705 basehttp "POST /api/auth/login/ HTTP/1.1" 401 172
+INFO 2025-10-06 09:16:36,752 basehttp "OPTIONS /api/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:36,845 basehttp "POST /api/auth/refresh/ HTTP/1.1" 200 489
+INFO 2025-10-06 09:16:37,131 basehttp "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2025-10-06 09:16:37,208 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:37,213 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:37,213 basehttp "OPTIONS /api/moderation/policies/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:37,215 basehttp "OPTIONS /api/moderation/history/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:37,225 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-06 09:16:37,233 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1205
+INFO 2025-10-06 09:16:37,272 basehttp "GET /api/moderation/policies/ HTTP/1.1" 200 53
+INFO 2025-10-06 09:16:37,287 basehttp "GET /api/moderation/history/ HTTP/1.1" 200 1205
+INFO 2025-10-06 09:16:45,333 basehttp "OPTIONS /api/moderation/history/3/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:45,341 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-06 09:16:46,034 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-06 09:16:46,582 basehttp "GET /api/moderation/history/3/ HTTP/1.1" 200 452
+INFO 2025-10-06 09:16:48,678 basehttp "OPTIONS /api/moderation/history/5/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:48,683 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 09:16:49,018 basehttp "GET /api/moderation/history/5/ HTTP/1.1" 200 781
+INFO 2025-10-06 09:16:50,560 basehttp "OPTIONS /api/moderation/history/4/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:16:50,566 basehttp "GET /api/moderation/history/4/ HTTP/1.1" 200 446
+INFO 2025-10-06 09:17:00,016 basehttp "OPTIONS /api/moderation/history/2/ HTTP/1.1" 200 0
+INFO 2025-10-06 09:17:00,022 basehttp "GET /api/moderation/history/2/ HTTP/1.1" 200 855
