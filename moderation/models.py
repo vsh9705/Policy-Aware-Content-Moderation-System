@@ -25,6 +25,7 @@ class ModerationResult(models.Model):
     """
     VERDICT_CHOICES = [
         ('clean', 'Clean'),
+        ('needs_review', 'Needs Review'),
         ('violation_found', 'Violation Found'),
         ('error', 'Error'),
     ]

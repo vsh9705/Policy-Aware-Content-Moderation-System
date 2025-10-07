@@ -146,7 +146,17 @@ def moderate_file_against_policy(policy_store: Chroma, file_path: str, filename:
             })
     
     total_chunks = len(chunks)
-    verdict = "clean" if not violations else "violation_found"
+    
+    # Determine verdict based on violation and review counts
+    if violation_count > 0:
+        # If there are violations (with or without reviews), it's a violation
+        verdict = "violation_found"
+    elif review_count > 0:
+        # If there are only reviews (no violations), it needs manual review
+        verdict = "needs_review"
+    else:
+        # If no violations and no reviews, it's clean
+        verdict = "clean"
     
     result = {
         "verdict": verdict,

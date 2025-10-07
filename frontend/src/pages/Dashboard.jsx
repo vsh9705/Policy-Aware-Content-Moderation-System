@@ -24,11 +24,10 @@ const Dashboard = () => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [stats, setStats] = useState({
     totalPolicies: 0,
-    totalViolations: 0,
-    totalReviews: 0,
-    totalClean: 0,
-    totalSubmissions: 0,
-    pendingReview: 0,
+    totalFiles: 0,
+    filesApproved: 0,      // verdict = 'clean'
+    filesViolation: 0,     // verdict = 'violation_found'
+    filesManualReview: 0,  // verdict = 'needs_review'
   });
 
   useEffect(() => {
@@ -38,18 +37,25 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (history.length > 0) {
-      const violations = history.filter(h => h.verdict === 'violation_found').length;
-      const clean = history.filter(h => h.verdict === 'clean').length;
-      const pending = history.filter(h => h.final_verdict === 'pending').length;
-      const reviews = history.reduce((acc, h) => acc + h.review_chunks, 0);
+      // Count files by their AI verdict (3 states)
+      const approved = history.filter(h => h.verdict === 'clean').length;
+      const violation = history.filter(h => h.verdict === 'violation_found').length;
+      const manualReview = history.filter(h => h.verdict === 'needs_review').length;
       
       setStats({
         totalPolicies: policies.length,
-        totalViolations: violations,
-        totalReviews: reviews,
-        totalClean: clean,
-        totalSubmissions: history.length,
-        pendingReview: pending,
+        totalFiles: history.length,
+        filesApproved: approved,
+        filesViolation: violation,
+        filesManualReview: manualReview,
+      });
+    } else {
+      setStats({
+        totalPolicies: policies.length,
+        totalFiles: 0,
+        filesApproved: 0,
+        filesViolation: 0,
+        filesManualReview: 0,
       });
     }
   }, [history, policies]);
@@ -245,12 +251,12 @@ const Dashboard = () => {
               <div style={styles.statsGrid}>
                 <div style={styles.statCard}>
                   <div style={styles.statCardHeader}>
-                    <span style={styles.statCardTitle}>Total Submissions</span>
+                    <span style={styles.statCardTitle}>Total Files</span>
                     <LayoutDashboard size={20} style={{color: '#6b7280'}} />
                   </div>
-                  <div style={styles.statCardValue}>{stats.totalSubmissions}</div>
+                  <div style={styles.statCardValue}>{stats.totalFiles}</div>
                   <div style={styles.statCardFooter}>
-                    <span style={{color: '#10b981'}}>Active</span>
+                    <span style={{color: '#6b7280'}}>All submissions</span>
                   </div>
                 </div>
 
@@ -259,7 +265,7 @@ const Dashboard = () => {
                     <span style={styles.statCardTitle}>Approved</span>
                     <CheckCircle size={20} style={{color: '#6b7280'}} />
                   </div>
-                  <div style={styles.statCardValue}>{stats.totalClean}</div>
+                  <div style={styles.statCardValue}>{stats.filesApproved}</div>
                   <div style={styles.statCardFooter}>
                     <span style={{color: '#10b981'}}>Clean files</span>
                   </div>
@@ -270,20 +276,20 @@ const Dashboard = () => {
                     <span style={styles.statCardTitle}>Violations</span>
                     <AlertCircle size={20} style={{color: '#6b7280'}} />
                   </div>
-                  <div style={styles.statCardValue}>{stats.totalViolations}</div>
+                  <div style={styles.statCardValue}>{stats.filesViolation}</div>
                   <div style={styles.statCardFooter}>
-                    <span style={{color: '#ef4444'}}>Flagged content</span>
+                    <span style={{color: '#ef4444'}}>Policy violations</span>
                   </div>
                 </div>
 
                 <div style={styles.statCard}>
                   <div style={styles.statCardHeader}>
-                    <span style={styles.statCardTitle}>Pending Review</span>
+                    <span style={styles.statCardTitle}>Manual Review</span>
                     <Clock size={20} style={{color: '#6b7280'}} />
                   </div>
-                  <div style={styles.statCardValue}>{stats.pendingReview}</div>
+                  <div style={styles.statCardValue}>{stats.filesManualReview}</div>
                   <div style={styles.statCardFooter}>
-                    <span style={{color: '#f59e0b'}}>Awaiting decision</span>
+                    <span style={{color: '#f59e0b'}}>Needs review</span>
                   </div>
                 </div>
 
@@ -295,17 +301,6 @@ const Dashboard = () => {
                   <div style={styles.statCardValue}>{stats.totalPolicies}</div>
                   <div style={styles.statCardFooter}>
                     <span style={{color: '#8b5cf6'}}>In use</span>
-                  </div>
-                </div>
-
-                <div style={styles.statCard}>
-                  <div style={styles.statCardHeader}>
-                    <span style={styles.statCardTitle}>Review Items</span>
-                    <FileText size={20} style={{color: '#6b7280'}} />
-                  </div>
-                  <div style={styles.statCardValue}>{stats.totalReviews}</div>
-                  <div style={styles.statCardFooter}>
-                    <span style={{color: '#f59e0b'}}>Chunks flagged</span>
                   </div>
                 </div>
               </div>
@@ -384,10 +379,15 @@ const Dashboard = () => {
                       <h3 style={styles.resultTitle}>Moderation Complete</h3>
                       <div style={{
                         ...styles.statusBadge,
-                        backgroundColor: moderationResult.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
-                        color: moderationResult.verdict === 'clean' ? '#065f46' : '#991b1b',
+                        backgroundColor: 
+                          moderationResult.verdict === 'clean' ? '#ecfdf5' : 
+                          moderationResult.verdict === 'needs_review' ? '#fef3c7' : '#fef2f2',
+                        color: 
+                          moderationResult.verdict === 'clean' ? '#065f46' : 
+                          moderationResult.verdict === 'needs_review' ? '#92400e' : '#991b1b',
                       }}>
-                        {moderationResult.verdict === 'clean' ? 'Clean' : 'Issues Found'}
+                        {moderationResult.verdict === 'clean' ? 'Clean' : 
+                         moderationResult.verdict === 'needs_review' ? 'Needs Review' : 'Violations Found'}
                       </div>
                     </div>
 
@@ -545,10 +545,15 @@ const Dashboard = () => {
                           <td style={styles.tableCell}>
                             <span style={{
                               ...styles.tableBadge,
-                              backgroundColor: item.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
-                              color: item.verdict === 'clean' ? '#065f46' : '#991b1b',
+                              backgroundColor: 
+                                item.verdict === 'clean' ? '#ecfdf5' : 
+                                item.verdict === 'needs_review' ? '#fef3c7' : '#fef2f2',
+                              color: 
+                                item.verdict === 'clean' ? '#065f46' : 
+                                item.verdict === 'needs_review' ? '#92400e' : '#991b1b',
                             }}>
-                              {item.verdict === 'clean' ? 'Clean' : 'Issues'}
+                              {item.verdict === 'clean' ? 'Clean' : 
+                               item.verdict === 'needs_review' ? 'Review' : 'Violations'}
                             </span>
                           </td>
                           <td style={styles.tableCell}>
@@ -693,10 +698,15 @@ const Dashboard = () => {
                   <span style={styles.modalStatLabel}>Status</span>
                   <span style={{
                     ...styles.tableBadge,
-                    backgroundColor: selectedResult.verdict === 'clean' ? '#ecfdf5' : '#fef2f2',
-                    color: selectedResult.verdict === 'clean' ? '#065f46' : '#991b1b',
+                    backgroundColor: 
+                      selectedResult.verdict === 'clean' ? '#ecfdf5' : 
+                      selectedResult.verdict === 'needs_review' ? '#fef3c7' : '#fef2f2',
+                    color: 
+                      selectedResult.verdict === 'clean' ? '#065f46' : 
+                      selectedResult.verdict === 'needs_review' ? '#92400e' : '#991b1b',
                   }}>
-                    {selectedResult.verdict === 'clean' ? 'Clean' : 'Issues Found'}
+                    {selectedResult.verdict === 'clean' ? 'Clean' : 
+                     selectedResult.verdict === 'needs_review' ? 'Needs Review' : 'Violations Found'}
                   </span>
                 </div>
                 <div style={styles.modalStatItem}>
